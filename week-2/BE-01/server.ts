@@ -1,9 +1,16 @@
 import express from "express";
+import swaggerUi from "swagger-ui-express";
+import { readFileSync } from "fs";
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+
+const openapiDoc = JSON.parse(
+  readFileSync(new URL("openapi.json", import.meta.url), "utf-8"),
+);
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(openapiDoc));
 
 interface Task {
   id: number;
