@@ -10,10 +10,12 @@ A public repository dedicated to my internship cohort at [FlyRank](https://flyra
 ```
 Flyrank-intern/
 ├── week-1/
-│   └── BE-01/       # Smallest Possible Backend (Node.js + TypeScript)
-├── week-2/          # Coming soon
-├── week-3/          # Coming soon
-├── week-4/          # Coming soon
+│   └── BE-01/
+├── week-2/
+│   └── BE-01/
+├── week-3/
+│   └── BE-04/
+├── week-4/
 └── README.md
 ```
 
