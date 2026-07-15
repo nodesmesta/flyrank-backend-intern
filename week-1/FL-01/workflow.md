@@ -28,10 +28,10 @@ Tasks that can be fully handled by AI without human review.
 
 | # | Task Description | AI Tool / Pipeline | Trigger / Schedule | Verification Method |
 |---|---|---|---|---|
-| 1 | Auto-sync repo struktur mingguan: buat folder week-N/ kosong dengan template README | Bash script + cron | Every week based on FlyRank schedule | Cek folder exists |
-| 2 | Auto-compile learning progress: dari commit messages + completed tasks jadi laporan mingguan | Bash script + git log | Weekly before mentor session | File report.md ter-generate |
-| 3 | Auto-validate submission format: cek struktur folder, file naming, format dokumentasi | GitHub Actions / CI | On push / PR | CI status |
-| 4 | Auto-track Skilljar progress: catat course selesai ke progress log | Script manual + git commit | After completing each course | Log file ter-update |
+|| 1 | Auto-sync weekly repo structure: create empty week-N/ folder with template README | Bash script + cron | Every week based on FlyRank schedule | Verify folder exists |
+|| 2 | Auto-compile learning progress: from commit messages + completed tasks into weekly report | Bash script + git log | Weekly before mentor session | Generated report.md |
+|| 3 | Auto-validate submission format: check folder structure, file naming, documentation formatting | GitHub Actions / CI | On push / PR | CI status |
+|| 4 | Auto-track Skilljar progress: log completed courses to progress log | Manual script + git commit | After completing each course | Updated log file |
 
 ---
 

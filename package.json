@@ -1,0 +1,20 @@
+{
+  "name": "flyrank-intern",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:be01": "tsx watch week-1/BE-01/server.ts",
+    "start:be01": "tsx week-1/BE-01/server.ts",
+    "dev:w2be01": "tsx watch week-2/BE-01/server.ts",
+    "start:w2be01": "tsx week-2/BE-01/server.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.25",
+    "@types/node": "^26.1.1",
+    "tsx": "^4.23.0",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "express": "^4.22.2"
+  }
+}
