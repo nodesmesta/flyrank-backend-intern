@@ -3,6 +3,8 @@ import express from "express";
 const app = express();
 const PORT = 3000;
 
+app.use(express.json());
+
 interface Task {
   id: number;
   title: string;
@@ -14,6 +16,8 @@ const tasks: Task[] = [
   { id: 2, title: "Build a CRUD API", done: false },
   { id: 3, title: "Write documentation", done: false },
 ];
+
+let nextId = 4;
 
 app.get("/", (_req, res) => {
   res.json({
@@ -41,6 +45,19 @@ app.get("/tasks/:id", (req, res) => {
   }
 
   res.json(task);
+});
+
+app.post("/tasks", (req, res) => {
+  const { title } = req.body;
+
+  if (!title || typeof title !== "string" || title.trim() === "") {
+    res.status(400).json({ error: "Title is required" });
+    return;
+  }
+
+  const task: Task = { id: nextId++, title: title.trim(), done: false };
+  tasks.push(task);
+  res.status(201).json(task);
 });
 
 app.listen(PORT, () => {
