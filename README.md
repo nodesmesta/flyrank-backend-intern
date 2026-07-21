@@ -14,6 +14,7 @@ Flyrank-intern/
 ├── week-2/
 │   └── BE-01/
 ├── week-3/
+│   └── BE-02/
 │   └── BE-04/
 ├── week-4/
 └── README.md

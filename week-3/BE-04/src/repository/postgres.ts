@@ -1,4 +1,4 @@
-import pg from "../../node_modules/@types/pg/index.js";
+import pg from "pg";
 import { randomUUID } from "node:crypto";
 import type { Task, TaskRepository } from "./interface.js";
 

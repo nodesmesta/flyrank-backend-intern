@@ -2,3 +2,8 @@ node_modules/
 dist/
 .env
 *.log
+
+# Database files
+tasks.db
+*.sqlite
+*.sqlite3

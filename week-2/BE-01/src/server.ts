@@ -8,7 +8,7 @@ const PORT = 3000;
 app.use(express.json());
 
 const openapiDoc = JSON.parse(
-  readFileSync(new URL("openapi.json", import.meta.url), "utf-8"),
+  readFileSync(new URL("../openapi.json", import.meta.url), "utf-8"),
 );
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(openapiDoc));
 

@@ -1,5 +1,5 @@
 import http from "node:http";
-import pg from "../node_modules/@types/pg/index.js";
+import pg from "pg";
 import { InMemoryTaskRepository } from "./repository/in-memory.js";
 import { PostgresTaskRepository } from "./repository/postgres.js";
 import { TaskService } from "./service/task-service.js";
