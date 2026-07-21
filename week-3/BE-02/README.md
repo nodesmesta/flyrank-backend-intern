@@ -20,6 +20,12 @@ npm run start:be02
 
 The server starts at **http://localhost:3000**. The database file `week-3/BE-02/tasks.db` is created automatically on first run, seeded with three sample tasks.
 
+Open the database directly from anywhere in the project:
+
+```bash
+npm run db:be02
+```
+
 ## Database
 
 | Item | Detail |
@@ -134,7 +140,8 @@ Content-Type: application/json
 You can inspect and manipulate the database directly using the `sqlite3` CLI:
 
 ```bash
-sqlite3 week-3/BE-02/tasks.db
+# From anywhere in the project (no need to cd to the db folder)
+npm run db:be02
 ```
 
 ```sql
