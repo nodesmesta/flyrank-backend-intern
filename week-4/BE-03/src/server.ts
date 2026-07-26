@@ -5,20 +5,12 @@ import express from "express";
 import { createClient } from "@supabase/supabase-js";
 import swaggerUi from "swagger-ui-express";
 import { readFileSync } from "fs";
-import type { Request, Response, NextFunction } from "express";
+import { createAuthMiddleware } from "./middleware/auth.js";
+import type { AuthenticatedRequest } from "./middleware/auth.js";
 
 const swaggerDocument = JSON.parse(
   readFileSync(new URL("./openapi.json", import.meta.url), "utf-8")
 );
-
-// Extend Express Request to include authenticated user
-interface AuthenticatedRequest extends Request {
-  user?: {
-    id: string;
-    email: string | undefined;
-    created_at: string | undefined;
-  };
-}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -30,48 +22,11 @@ const PORT = parseInt(process.env.PORT ?? "3000", 10);
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
+// Auth middleware — reusable guard for protected routes
+const authMiddleware = createAuthMiddleware(supabase);
+
 const app = express();
 app.use(express.json());
-
-// ──────────────────────────────────────────────
-// Stage 4: Auth Middleware
-// ──────────────────────────────────────────────
-
-// Reusable middleware: verifies Bearer token and attaches user to request
-async function authMiddleware(
-  req: AuthenticatedRequest,
-  res: Response,
-  next: NextFunction
-): Promise<void> {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    res.status(401).json({ error: "Access token required" });
-    return;
-  }
-
-  const token = authHeader.slice(7);
-  if (!token) {
-    res.status(401).json({ error: "Access token required" });
-    return;
-  }
-
-  // Verify token with Supabase
-  const { data, error } = await supabase.auth.getUser(token);
-
-  if (error || !data.user) {
-    res.status(401).json({ error: "Invalid or expired token" });
-    return;
-  }
-
-  // Attach user info to request for downstream handlers
-  req.user = {
-    id: data.user.id,
-    email: data.user.email,
-    created_at: data.user.created_at,
-  };
-  next();
-}
 
 // ──────────────────────────────────────────────
 // Stage 1: Sign Up & Log In

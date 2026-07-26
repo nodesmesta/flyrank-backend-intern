@@ -7,20 +7,22 @@ A production-style Express API demonstrating **authentication flows with Supabas
 ## 🚀 Quick Start
 
 ```bash
-# 1. Clone and install
+# 1. Clone repo (if not done) and install dependencies from root
 npm install
 
 # 2. Set up Supabase credentials
-cp .env.example .env
-# Edit .env → fill in SUPABASE_URL and SUPABASE_KEY (anon/public key)
+cp week-4/BE-03/.env.example week-4/BE-03/.env
+# Edit week-4/BE-03/.env → fill in SUPABASE_URL and SUPABASE_KEY (anon/public key)
 
-# 3. Start the server
-npm run dev      # watch mode (auto-restart on changes)
+# 3. Start the server (run from root)
+npm run dev:be03      # watch mode (auto-restart on changes)
 # or
-npm start        # one-shot
+npm run start:be03    # one-shot
 ```
 
 Server runs at **http://localhost:3000**
+
+> **Note:** This project is part of a monorepo. All dependencies are hoisted to the root `package.json`. Do not run `npm install` inside `week-4/BE-03/`.
 
 ## 📡 API Reference
 
@@ -68,15 +70,18 @@ curl -X POST http://localhost:3000/auth/logout \
 ## 🏗 Project Structure
 
 ```
-BE-03/
+week-4/BE-03/
 ├── src/
-│   ├── server.ts        # Entry point — Express app with all routes
-│   └── openapi.json     # OpenAPI 3.0 specification for Swagger UI
-├── .env                 # Supabase credentials (git-ignored)
-├── .env.example         # Environment variable template
-├── package.json         # Dependencies & scripts
-├── tsconfig.json        # TypeScript configuration
-└── README.md            # This documentation
+│   ├── middleware/
+│   │   └── auth.ts        # Auth middleware — reusable Bearer JWT guard
+│   ├── server.ts          # Entry point — Express app with all routes
+│   └── openapi.json       # OpenAPI 3.0 specification for Swagger UI
+├── docs/screenshots/      # Reference screenshots
+├── .env                   # Supabase credentials (git-ignored)
+├── .env.example           # Environment variable template
+├── .gitignore             # node_modules/, dist/, .env, *.log
+├── README.md              # This documentation
+└── W4 - Auth - Login & protect.pdf   # Assignment spec
 ```
 
 ## 🧠 Architecture & Stages
@@ -89,7 +94,7 @@ The API was built incrementally across 6 stages:
 | **1** | `POST /auth/signup` & `POST /auth/login` | Supabase Auth SDK basics |
 | **2** | `GET /public/info` & `GET /protected/profile` | Public vs protected route design |
 | **3** | Token verification via `supabase.auth.getUser()` | Server-side JWT validation |
-| **4** | `authMiddleware()` + `POST /auth/logout` + `GET /protected/dashboard` | Reusable middleware pattern |
+| **4** | `createAuthMiddleware()` factory + `POST /auth/logout` + `GET /protected/dashboard` | Reusable middleware separated into `src/middleware/auth.ts` — dependency injection pattern (passes Supabase client) |
 | **5** | Swagger UI at `/api-docs` | Interactive API documentation with Bearer auth |
 | **6** | `.env.example`, GitHub push, README | Project packaging and sharing |
 
@@ -115,17 +120,15 @@ curl http://localhost:3000/protected/profile
 
 # Invalid token → 401
 curl http://localhost:3000/protected/profile \
-  -H "Authorization: Bearer FAKETOKEN"
+  -H "Authorization: Bearer invalid_token_here"
 ```
 
 ## 📸 Screenshots
 
-> *(Add screenshots of Swagger UI and curl responses here)*
-
 ### Swagger UI
 
-![Swagger UI - API Documentation](docs/screenshots/swagger-ui.png)
+![Swagger UI — API Documentation](docs/screenshots/swagger-ui.png)
 
-### Protected Route Response
+### Protected Profile Response
 
-![Protected Profile](docs/screenshots/protected-profile.png)
+![Protected Profile — 200 with user data](docs/screenshots/swagger-ui-2.png)
