@@ -7,6 +7,8 @@
     "start:be01": "tsx week-1/BE-01/src/server.ts",
     "dev:w2be01": "tsx watch week-2/BE-01/src/server.ts",
     "start:w2be01": "tsx week-2/BE-01/src/server.ts",
+    "dev:be03": "tsx watch week-4/BE-03/src/server.ts",
+    "start:be03": "tsx week-4/BE-03/src/server.ts",
     "dev:be04": "tsx watch week-3/BE-04/src/index.ts",
     "start:be04": "tsx week-3/BE-04/src/index.ts",
     "dev:be02": "tsx watch week-3/BE-02/src/server.ts",
@@ -23,7 +25,9 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.110.8",
     "better-sqlite3": "^13.0.1",
+    "dotenv": "^17.4.2",
     "express": "^4.22.2",
     "pg": "^8.14.1",
     "swagger-ui-express": "^5.0.1"
