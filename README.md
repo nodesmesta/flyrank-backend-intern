@@ -13,10 +13,13 @@ Flyrank-intern/
 │   └── BE-01/
 ├── week-2/
 │   └── BE-01/
+│   └── General_AI_Fluency/
 ├── week-3/
 │   └── BE-02/
 │   └── BE-04/
 ├── week-4/
+│   └── BE-03/
+├── week-5/ (Soon)
 └── README.md
 ```
 
