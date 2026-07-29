@@ -6,7 +6,7 @@ This folder documents the **Frame Your Work** assignment — the process of turn
 
 ### Step 1: Set the Voice Card
 
-**File:** [`voice-card.md`](./voice-card.md)
+**File:** [`data/voice-card.md`](./data/voice-card.md)
 
 Five words that define how I want to sound across all my portfolio copy:
 
@@ -18,7 +18,7 @@ This is the standing instruction I give to Claude before any drafting.
 
 ### Step 2: Interview — Asset Guard
 
-**File:** [`case-study-asset-guard.md`](./case-study-asset-guard.md)
+**File:** [`data/case-study-asset-guard.md`](./data/case-study-asset-guard.md)
 
 **The project:** Asset Guard — a SaaS platform that helps people and organizations detect stuck assets (property, equipment, IP, inventory) and get a clear productivity score with improvement steps.
 
@@ -42,7 +42,7 @@ I answered honestly, including that nothing is built yet — it's still at the d
 
 ### Step 3: Bio & Landing Page Prompt
 
-**File:** [`bio-cta.md`](./bio-cta.md)
+**File:** [`data/bio-cta.md`](./data/bio-cta.md)
 
 A prompt for Claude to generate a full landing page with **orchestration** — a deliberate narrative flow that guides a visitor from problem awareness to action. Includes headline, hero, how-it-works, bio, and CTA — all in voice card style.
 
@@ -52,15 +52,15 @@ A prompt for Claude to generate a full landing page with **orchestration** — a
 
 **Generic version — AI-generated, biased context:**
 
-![Generic version](Screenshot%20from%202026-07-27%2012-34-55.png)
+![Generic version](data/Screenshot%20from%202026-07-27%2012-34-55.png)
 
 **Edited version — directed, focused purpose:**
 
-![Edited version](Screenshot%20from%202026-07-27%2012-43-03.png)
+![Edited version](data/Screenshot%20from%202026-07-27%2012-43-03.png)
 
 **Insight:** The generic version delivers context with bias — broad claims and buzzwords that could describe any product. The edited version directs the visitor to a clear, focused purpose specific to Asset Guard.
 
-**Prompt file:** [`before-after.md`](./before-after.md) — a prompt for Claude to analyze the difference.
+**Prompt file:** [`data/before-after.md`](./data/before-after.md) — a prompt for Claude to analyze the difference.
 
 ---
 
