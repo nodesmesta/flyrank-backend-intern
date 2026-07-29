@@ -9,6 +9,9 @@ A consistent look is what separates a portfolio that feels intentional from one 
 3. Make a logo or favicon, your name set in your heading font, or a clean monogram. Keep it simple.
 4. Write a two-line style note (fonts, hex codes, one sentence on the mood) and add it to your Claude Project so the build stays consistent.
 
+**Deliverable:**
+The identity kit on one page, fonts named, palette with hex codes, the logo/favicon, and the two-line style note, posted to your track thread.
+
 **Pass / revise:**
 - One or two fonts, not a pile.
 - A tight palette (≈3–4 colors) with actual hex codes.
