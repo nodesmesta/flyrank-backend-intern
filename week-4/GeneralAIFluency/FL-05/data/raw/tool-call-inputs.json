@@ -1,0 +1,28 @@
+[
+  {
+    "tool": "mcp_brightdata_search_engine",
+    "arguments": {
+      "engine": "google",
+      "geo_location": "us",
+      "query": "software asset management trends 2026 SAM tools"
+    },
+    "call_id": "call_00_ViDi7Z5l8klU6Q9y8M4v8174"
+  },
+  {
+    "tool": "mcp_brightdata_scrape_as_markdown",
+    "arguments": {
+      "url": "https://www.openlm.com/blog/software-asset-management-trends-2026/"
+    },
+    "call_id": "call_01_4ZZDSJRXgPCk45pc6lZ95136"
+  },
+  {
+    "tool": "mcp_brightdata_scrape_batch",
+    "arguments": {
+      "urls": [
+        "https://zylo.com/blog/best-software-asset-management-tools",
+        "https://www.flexera.com/blog/ai/5-finops-practices-for-ai/"
+      ]
+    },
+    "call_id": "call_02_Rarp8tlyi1IQroFDqizu4498"
+  }
+]
