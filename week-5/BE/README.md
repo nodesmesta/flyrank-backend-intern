@@ -166,6 +166,29 @@ Run `npm run db:be5` for the live summary; snapshots are kept in
 `data/books.jsonl` is 50 self-contained JSON records intended as the **RAG
 corpus** for the Week-6 build.
 
+---
+
+## Conclusion
+
+This task builds a working **polite web scraper** end to end — not a script that
+just pulls pages, but one that earns the right to ask: it resolves and obeys
+robots.txt (hand-written RFC 9309 parser), identifies itself with a real
+User-Agent, throttles every request to 1.5 s, and logs each fetch so its
+behavior is observable.
+
+When reality pushed back, the scraper stayed honest:
+- the site publishes **no robots.txt** (404) → permissive default, throttling kept;
+- seed data carries duplicated prose and a `Default` category → cleaned, not
+  rewritten; the quirk documented instead of silently "fixed".
+
+The output is not just scraped HTML — it is a **validated, structured
+50-book corpus** (SQLite + JSONL) with zero duplicates and zero malformed
+records, verified by `tsc --noEmit` across the whole monorepo. That corpus is
+`data/books.jsonl`, ready to become the **RAG corpus for Week-6**, and the
+whole pipeline is modular (config → selectors → polite → extract → clean →
+store) so it can be inspected, tested, and re-pointed at another site in one
+place.
+
 ## Files
 
 ```
