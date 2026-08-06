@@ -13,7 +13,11 @@
     "start:be04": "tsx week-3/BE-04/src/index.ts",
     "dev:be02": "tsx watch week-3/BE-02/src/server.ts",
     "start:be02": "tsx week-3/BE-02/src/server.ts",
-    "db:be02": "sqlite3 week-3/BE-02/tasks.db"
+    "db:be02": "sqlite3 week-3/BE-02/tasks.db",
+    "dev:be5": "tsx watch week-5/BE/src/index.ts",
+    "start:be5": "tsx week-5/BE/src/index.ts",
+    "scrape:be5": "tsx week-5/BE/src/index.ts",
+    "db:be5": "tsx week-5/BE/src/db.ts"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
@@ -27,6 +31,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.110.8",
     "better-sqlite3": "^13.0.1",
+    "cheerio": "^1.2.0",
     "dotenv": "^17.4.2",
     "express": "^4.22.2",
     "pg": "^8.14.1",

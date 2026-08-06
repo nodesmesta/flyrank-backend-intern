@@ -1,0 +1,51 @@
+
+> db:be5
+> tsx week-5/BE/src/db.ts
+
+◇ injected env (5) from week-5/BE/.env // tip: ⌘ suppress logs { quiet: true }
+db: /home/nodesemesta/dev/Flyrank-intern/week-5/BE/books.db
+rows: 50 | distinct urls: 50 | duplicates: 0
+price: min £12.84 | avg £35.14 | max £57.31
+
+books per category:
+  Poetry                   7
+  Default                  7
+  Nonfiction               5
+  Thriller                 3
+  Music                    3
+  Fiction                  3
+  Young Adult              2
+  Romance                  2
+  Mystery                  2
+  Childrens                2
+  Travel                   1
+  Spirituality             1
+  Sequential Art           1
+  Science Fiction          1
+  Politics                 1
+  Philosophy               1
+  New Adult                1
+  History                  1
+  Historical Fiction       1
+  Food and Drink           1
+  Fantasy                  1
+  Contemporary             1
+  Business                 1
+  Art                      1
+
+rating distribution:
+  1 stars: 10
+  2 stars: 8
+  3 stars: 11
+  4 stars: 8
+  5 stars: 13
+
+sample (first 5 by title):
+  - #HigherSelfie: Wake Up Your Life. Free Your Soul. Find Your Tribe. | £23.11 | inStock=1 | stock=17 | rating=5 | Nonfiction
+  - A Light in the Attic     | £51.77 | inStock=1 | stock=22 | rating=3 | Poetry
+  - Aladdin and His Wonderful Lamp | £53.13 | inStock=1 | stock=19 | rating=3 | Default
+  - America's Cradle of Quarterbacks: Western Pennsylvania's Football Factory from Johnny Unitas to Joe Montana | £22.5 | inStock=1 | stock=19 | rating=3 | Default
+  - Behind Closed Doors      | £52.22 | inStock=1 | stock=18 | rating=4 | Thriller
+
+jsonl: /home/nodesemesta/dev/Flyrank-intern/week-5/BE/data/books.jsonl
+  lines: 50 | unique urls: 50 | malformed: 0
