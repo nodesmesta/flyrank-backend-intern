@@ -2,30 +2,42 @@
 
 A public repository dedicated to my internship cohort at [FlyRank](https://flyrank.ai).
 
-## 📋 Track
-**Backend Engineering** — focused on server-side development, APIs, databases, system architecture, and backend infrastructure.
+## Track
 
-## 📁 Workspace Structure
+**Backend Engineering** — focused on server-side development, APIs, databases, system architecture, and backend infrastructure. Each week also includes General AI Fluency tasks (prompting, design, and AI-assisted workflows).
+
+## Workspace Structure
 
 ```
 Flyrank-intern/
+├── README.md
+├── package.json
+├── tsconfig.json
+├── .gitignore
+│
 ├── week-1/
-│   └── BE-01/
+│   ├── BE-01/
+│   └── GeneralAIFluency/
+│
 ├── week-2/
-│   └── BE-01/
-│   └── General_AI_Fluency/
+│   ├── BE-01/
+│   └── GeneralAIFluency/
+│
 ├── week-3/
-│   └── BE-02/
-│   └── BE-04/
+│   ├── BE-02/
+│   ├── BE-04/
+│   └── GeneralAIFluency/
+│
 ├── week-4/
-│   └── BE-03/
-├── week-5/ (Soon)
-└── README.md
+│   ├── BE-03/
+│   └── GeneralAIFluency/
+│
+└── week-5/ (Soon)
 ```
 
-Each week folder contains the tasks, learnings, and outputs for that period.
+Each week folder contains the backend task(s) (`BE-xx`) and a `GeneralAIFluency/` folder with the AI fluency tasks for that period. Every task folder holds its own `README.md`, the task brief, and a `data/` folder with prompts, sources, and output artifacts. All dependencies and run scripts live in the root `package.json` (single hoisted install — run everything from the repository root).
 
-## 🎯 Goals
+## Goals
 
 - Apply backend engineering best practices
 - Build production-grade APIs and services
