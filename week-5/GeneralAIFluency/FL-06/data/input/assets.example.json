@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "name": "Gold 1kg",
+      "type": "precious-metal",
+      "location": "home safe (brankas)",
+      "status": "idle",
+      "status_notes": "Kept in a safe, not rented / invested / not earning",
+      "registered_on": "2026-08-07"
+    }
+  ]
+}
