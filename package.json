@@ -17,7 +17,9 @@
     "dev:be5": "tsx watch week-5/BE/src/index.ts",
     "start:be5": "tsx week-5/BE/src/index.ts",
     "scrape:be5": "tsx week-5/BE/src/index.ts",
-    "db:be5": "tsx week-5/BE/src/db.ts"
+    "db:be5": "tsx week-5/BE/src/db.ts",
+    "scout:fl07": "tsx week-5/GeneralAIFluency/FL-07/src/agent.ts",
+    "capture:fl07": "asciinema rec --overwrite week-5/GeneralAIFluency/FL-07/data/capture/run2.cast -c \"tsx week-5/GeneralAIFluency/FL-07/src/agent.ts\""
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
@@ -29,6 +31,7 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.14.0",
     "@supabase/supabase-js": "^2.110.8",
     "better-sqlite3": "^13.0.1",
     "cheerio": "^1.2.0",
