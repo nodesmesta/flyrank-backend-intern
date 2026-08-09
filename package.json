@@ -20,9 +20,9 @@
     "db:be5": "tsx week-5/BE/src/db.ts",
     "scout:fl07": "tsx week-5/GeneralAIFluency/FL-07/src/agent.ts",
     "capture:fl07": "asciinema rec --overwrite week-5/GeneralAIFluency/FL-07/data/capture/run2.cast -c \"tsx week-5/GeneralAIFluency/FL-07/src/agent.ts\"",
-    "dev:portfolio": "next dev week-5/GeneralAIFluency/ShiptheUglyOne",
-    "build:portfolio": "next build week-5/GeneralAIFluency/ShiptheUglyOne",
-    "preview:portfolio": "python3 -m http.server 4200 -d week-5/GeneralAIFluency/ShiptheUglyOne/out",
+    "dev:portfolio": "next dev week-5/GeneralAIFluency/ShiptheUglyOne/site",
+    "build:portfolio": "next build week-5/GeneralAIFluency/ShiptheUglyOne/site",
+    "preview:portfolio": "python3 -m http.server 4200 -d week-5/GeneralAIFluency/ShiptheUglyOne/site/out",
     "dev:site": "next dev week-5/GeneralAIFluency/PersonalWebsiteLiveontheFlyRankDomain/site",
     "build:site": "next build week-5/GeneralAIFluency/PersonalWebsiteLiveontheFlyRankDomain/site",
     "preview:site": "python3 -m http.server 4300 -d week-5/GeneralAIFluency/PersonalWebsiteLiveontheFlyRankDomain/site/out"
