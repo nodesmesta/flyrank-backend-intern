@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&family=Roboto+Slab:wght@300;400;500&display=swap");
+
+:root {
+  --main: #8511df;
+  --ink: #1a1a2e;
+  --bg: #f8f9fa;
+  --accent: #e8d5f5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Roboto Slab", Georgia, serif;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  padding: 72px 24px 40px;
+  text-align: center;
+}
+
+h1 {
+  font-family: "Ubuntu", sans-serif;
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.claim {
+  margin-top: 0.5rem;
+  font-family: "Ubuntu", sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 500;
+  color: var(--main);
+}
+
+.roles {
+  margin-top: 1.25rem;
+  font-size: 0.95rem;
+  color: #4a4a5e;
+  letter-spacing: 0.04em;
+}
+
+main {
+  flex: 1;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.elevator {
+  font-size: 1.05rem;
+  text-align: center;
+  color: #33334a;
+}
+
+.highlights {
+  margin-top: 0.75rem;
+  text-align: center;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--main);
+}
+
+section {
+  margin: 40px 0;
+}
+
+h2 {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--main);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+.exp-item {
+  display: flex;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--accent);
+}
+
+.exp-item:last-child {
+  border-bottom: none;
+}
+
+.exp-period {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--main);
+  white-space: nowrap;
+  min-width: 118px;
+  padding-top: 2px;
+}
+
+.exp-title {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.exp-detail {
+  font-size: 0.9rem;
+  color: #55556b;
+  margin-top: 3px;
+}
+
+.building-note {
+  background: #ffffff;
+  border: 1px solid var(--accent);
+  border-left: 4px solid var(--main);
+  border-radius: 8px;
+  padding: 16px 18px;
+  font-size: 0.92rem;
+  color: #33334a;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 40px 0 48px;
+}
+
+.links a {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffffff;
+  background: var(--main);
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 999px;
+  transition: background 0.2s ease;
+}
+
+.links a:hover {
+  background: #6a0fb5;
+}
+
+footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 0.8rem;
+  color: #88889c;
+  border-top: 1px solid var(--accent);
+}

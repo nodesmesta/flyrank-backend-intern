@@ -1,8 +1,8 @@
 # DNS Walkthrough — Muhamad Jamaludin
 
-**Site:** https://muhamad-jamaludin.vercel.app (Vercel, free tier)
+**Site:** https://muhamadjamaludin.vercel.app (Vercel, free tier)
 **Future subdomain:** muhamadjamaludin.flyrank.ai
-**CNAME value to be used:** `muhamad-jamaludin.vercel.app`
+**CNAME value to be used:** `muhamadjamaludin.vercel.app`
 
 ---
 
@@ -15,7 +15,7 @@ name.
 For my case:
 
 ```
-muhamadjamaludin.flyrank.ai  →  muhamad-jamaludin.vercel.app
+muhamadjamaludin.flyrank.ai  →  muhamadjamaludin.vercel.app
 ```
 
 This means someone typing my subdomain still reaches the same site, without
@@ -33,10 +33,10 @@ side will be:
 |-------|-------|
 | Type | CNAME |
 | Name | `muhamadjamaludin` |
-| Target / Value | `muhamad-jamaludin.vercel.app` |
+| Target / Value | `muhamadjamaludin.vercel.app` |
 
 On my side: I add the custom domain `muhamadjamaludin.flyrank.ai` in
-Vercel → project `muhamad-jamaludin` → Settings → Domains, then wait for
+Vercel → project `muhamadjamaludin` → Settings → Domains, then wait for
 DNS propagation until the record is read.
 
 ## 3. What happens when someone types my address
@@ -55,11 +55,11 @@ The flow, explained for a non-technical reader:
    memorise every name in the world, so it asks the authoritative
    nameserver for the domain `flyrank.ai` — the central archive holding
    that domain's DNS records. The nameserver checks and finds the CNAME
-   record: "this name points to `muhamad-jamaludin.vercel.app`".
+   record: "this name points to `muhamadjamaludin.vercel.app`".
 
 4. **The record comes back (the archive's answer).** The resolver gets that
    answer — this is the "record" — and follows it up by finding where
-   `muhamad-jamaludin.vercel.app` is (the IP address of Vercel's server),
+   `muhamadjamaludin.vercel.app` is (the IP address of Vercel's server),
    also via DNS.
 
 5. **The response (the host answers).** The request arrives at the right
@@ -73,9 +73,9 @@ The whole process takes under a second and is invisible to the user.
 ## 4. Checklist when the subdomain is provisioned (capstone)
 
 1. Operations creates the CNAME record `muhamadjamaludin` →
-   `muhamad-jamaludin.vercel.app` on the `flyrank.ai` DNS side.
+   `muhamadjamaludin.vercel.app` on the `flyrank.ai` DNS side.
 2. I add the custom domain `muhamadjamaludin.flyrank.ai` in Vercel →
-   project `muhamad-jamaludin` → Settings → Domains.
+   project `muhamadjamaludin` → Settings → Domains.
 3. Wait for DNS propagation (usually minutes to a few hours).
 4. Check the subdomain in a private window and confirm the HTTPS padlock.
 5. Nothing changes on the website itself — a custom domain is only a

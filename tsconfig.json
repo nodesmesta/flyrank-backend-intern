@@ -6,7 +6,8 @@
     "strict": true,
     "esModuleInterop": true,
     "types": ["node"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "jsx": "preserve"
   },
-  "include": ["week-*/**/*.ts"]
+  "include": ["week-*/**/*.ts", "week-*/**/*.tsx"]
 }
