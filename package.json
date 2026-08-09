@@ -23,9 +23,9 @@
     "dev:portfolio": "next dev week-5/GeneralAIFluency/ShiptheUglyOne/site",
     "build:portfolio": "next build week-5/GeneralAIFluency/ShiptheUglyOne/site",
     "preview:portfolio": "python3 -m http.server 4200 -d week-5/GeneralAIFluency/ShiptheUglyOne/site/out",
-    "dev:site": "next dev week-5/GeneralAIFluency/PersonalWebsiteLiveontheFlyRankDomain/site",
-    "build:site": "next build week-5/GeneralAIFluency/PersonalWebsiteLiveontheFlyRankDomain/site",
-    "preview:site": "python3 -m http.server 4300 -d week-5/GeneralAIFluency/PersonalWebsiteLiveontheFlyRankDomain/site/out"
+    "dev:site": "next dev week-5/GeneralAIFluency/FP-04/site",
+    "build:site": "next build week-5/GeneralAIFluency/FP-04/site",
+    "preview:site": "python3 -m http.server 4300 -d week-5/GeneralAIFluency/FP-04/site/out"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
