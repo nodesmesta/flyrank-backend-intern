@@ -1,0 +1,129 @@
+{
+  "prompt_version": "enrich-v1",
+  "model": "deepseek-v4-flash-free",
+  "created": "2026-08-11",
+  "scoring": "pass = category in [expected_category] + accepted_categories; flags are reported per case (expected ⊆ actual counts as a flag hit); confidence is reported, not scored",
+  "cases": [
+    {
+      "id": "typical-poetry",
+      "label": "declared category matches content",
+      "title": "A Light in the Attic",
+      "declared_category": "Poetry",
+      "url": "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html",
+      "description": "It's hard to imagine a world without A Light in the Attic. This now-classic collection of poetry and drawings from Shel Silverstein celebrates its 20th anniversary with this special edition. Silverstein's humorous and creative verse can amuse the dowdiest of readers. Lemon-faced adults and fidgety kids sit still and read these rhythmic words and laugh and smile and love th It's hard to imagine a world without A Light in the Attic. This now-classic collection of poetry and drawings from Shel Silverstein celebrates its 20th anniversary with this special edition. Silverstein's humorous and creative verse can amuse the dowdiest of readers. Lemon-faced adults and fidgety kids sit still and read these rhythmic words and laugh and smile and love that Silverstein. Need proof of his genius? RockabyeRockabye baby, in the treetopDon't you know a treetopIs no safe place to rock?And who put you up there,And your cradle, too?Baby, I think someone down here'sGot it in for you. Shel, you never sounded so good. ...more",
+      "expected_category": "Poetry",
+      "accepted_categories": [],
+      "expected_flags": [
+        "duplicate_text",
+        "truncated"
+      ],
+      "notes": "declared Poetry; description repeats whole sentences and ends with a stub (seed-data quirk)"
+    },
+    {
+      "id": "typical-mystery",
+      "label": "declared category matches content",
+      "title": "Sharp Objects",
+      "declared_category": "Mystery",
+      "url": "https://books.toscrape.com/catalogue/sharp-objects_997/index.html",
+      "description": "WICKED above her hipbone, GIRL across her heart Words are like a road map to reporter Camille Preaker’s troubled past. Fresh from a brief stay at a psych hospital, Camille’s first assignment from the second-rate daily paper where she works brings her reluctantly back to her hometown to cover the murders of two preteen girls. NASTY on her kneecap, BABYDOLL on her leg Since WICKED above her hipbone, GIRL across her heart Words are like a road map to reporter Camille Preaker’s troubled past. Fresh from a brief stay at a psych hospital, Camille’s first assignment from the second-rate daily paper where she works brings her reluctantly back to her hometown to cover the murders of two preteen girls. NASTY on her kneecap, BABYDOLL on her leg Since she left town eight years ago, Camille has hardly spoken to her neurotic, hypochondriac mother or to the half-sister she barely knows: a beautiful thirteen-year-old with an eerie grip on the town. Now, installed again in her family’s Victorian mansion, Camille is haunted by the childhood tragedy she has spent her whole life trying to cut from her memory. HARMFUL on her wrist, WHORE on her ankle As Camille works to uncover the truth about these violent crimes, she finds herself identifying with the young victims—a bit too strongly. Clues keep leading to dead ends, forcing Camille to unravel the psychological puzzle of her own past to get at the story. Dogged by her own demons, Camille will have to confront what happened to her years before if she wants to survive this homecoming.With its taut, crafted writing, Sharp Objects is addictive, haunting, and unforgettable. ...more",
+      "expected_category": "Mystery",
+      "accepted_categories": [],
+      "expected_flags": [
+        "duplicate_text"
+      ],
+      "notes": "declared Mystery; description repeats the opening sentence"
+    },
+    {
+      "id": "typical-scifi",
+      "label": "declared category matches content",
+      "title": "Mesaerion: The Best Science Fiction Stories 1800-1849",
+      "declared_category": "Science Fiction",
+      "url": "https://books.toscrape.com/catalogue/mesaerion-the-best-science-fiction-stories-1800-1849_983/index.html",
+      "description": "Andrew Barger, award-winning author and engineer, has extensively researched forgotten journals and magazines of the early 19th century to locate groundbreaking science fiction short stories in the English language. In doing so, he found what is possibly the first science fiction story by a female (and it is not from Mary Shelley). Andrew located the first steampunk short Andrew Barger, award-winning author and engineer, has extensively researched forgotten journals and magazines of the early 19th century to locate groundbreaking science fiction short stories in the English language. In doing so, he found what is possibly the first science fiction story by a female (and it is not from Mary Shelley). Andrew located the first steampunk short story, which has not been republished since 1844. There is the first voyage to the moon in a balloon, republished for the first time since 1820 that further tells of a darkness machine and a lunarian named Zuloc. Other sci-stories include the first robotic insect and an electricity gun. Once again, Andrew has searched old texts to find the very best science fiction stories from the period when the genre automated to life, some of the stories are published for the first time in nearly 200 years. Read these fantastic stories today!OUR OWN COUNTRY So mechanical has the age become, that men seriously talk of flying machines, to go by steam, --not your air-balloons, but real Daedalian wings, made of wood and joints, nailed to your shoulder, --not wings of feathers and wax like the wings of Icarus, who fell into the Cretan sea, but real, solid, substantial, rock-maple wings with wrought-iron hinges, and huge concavities, to propel us through the air. Knickerbocker Magazine, May 18 ...more",
+      "expected_category": "Science Fiction",
+      "accepted_categories": [],
+      "expected_flags": [
+        "duplicate_text"
+      ],
+      "notes": "declared Science Fiction; description repeats its opening sentence"
+    },
+    {
+      "id": "typical-romance",
+      "label": "declared category matches content",
+      "title": "Chase Me (Paris Nights #2)",
+      "declared_category": "Romance",
+      "url": "https://books.toscrape.com/catalogue/chase-me-paris-nights-2_977/index.html",
+      "description": "A Michelin two-star chef at twenty-eight, Violette Lenoir could handle anything, including a cocky burglar who broke into her restaurant in the middle of the night.Or so she thought.Elite counterterrorist operative Chase “Smith” had been through things that made Hell Week look easy. But nothing had prepared him for a leather-clad blonde who held him at bay at knifepoint an A Michelin two-star chef at twenty-eight, Violette Lenoir could handle anything, including a cocky burglar who broke into her restaurant in the middle of the night.Or so she thought.Elite counterterrorist operative Chase “Smith” had been through things that made Hell Week look easy. But nothing had prepared him for a leather-clad blonde who held him at bay at knifepoint and dared him to take her on.Now if only saving the world didn’t require he ruin her life.Two people who thought they could handle anything now have to take on each other. It's a battle neither one expected. But with their futures on the line, they have nothing to lose...but their hearts.Warning: This book contains one arrogant Navy SEAL, nights of Paris passion, and a woman who wants to have it all. ...more",
+      "expected_category": "Romance",
+      "accepted_categories": [],
+      "expected_flags": [
+        "duplicate_text"
+      ],
+      "notes": "declared Romance; description repeats its opening sentence"
+    },
+    {
+      "id": "mismatch-default",
+      "label": "site declared a placeholder category (Default)",
+      "title": "The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics",
+      "declared_category": "Default",
+      "url": "https://books.toscrape.com/catalogue/the-boys-in-the-boat-nine-americans-and-their-epic-quest-for-gold-at-the-1936-berlin-olympics_992/index.html",
+      "description": "For readers of Laura Hillenbrand's Seabiscuit and Unbroken, the dramatic story of the American rowing team that stunned the world at Hitler's 1936 Berlin Olympics Daniel James Brown’s robust book tells the story of the University of Washington’s 1936 eight-oar crew and their epic quest for an Olympic gold medal, a team that transformed the sport and grabbed the attention o For readers of Laura Hillenbrand's Seabiscuit and Unbroken, the dramatic story of the American rowing team that stunned the world at Hitler's 1936 Berlin Olympics Daniel James Brown’s robust book tells the story of the University of Washington’s 1936 eight-oar crew and their epic quest for an Olympic gold medal, a team that transformed the sport and grabbed the attention of millions of Americans. The sons of loggers, shipyard workers, and farmers, the boys defeated elite rivals first from eastern and British universities and finally the German crew rowing for Adolf Hitler in the Olympic games in Berlin, 1936. The emotional heart of the story lies with one rower, Joe Rantz, a teenager without family or prospects, who rows not for glory, but to regain his shattered self-regard and to find a place he can call home. The crew is assembled by an enigmatic coach and mentored by a visionary, eccentric British boat builder, but it is their trust in each other that makes them a victorious team. They remind the country of what can be done when everyone quite literally pulls together—a perfect melding of commitment, determination, and optimism. Drawing on the boys’ own diaries and journals, their photos and memories of a once-in-a-lifetime shared dream, The Boys in the Boat is an irresistible story about beating the odds and finding hope in the most desperate of times—the improbable, intimate story of nine working-class boys from the American west who, in the depths of the Great Depression, showed the world what true grit really meant. It will appeal to readers of Erik Larson, Timothy Egan, James Bradley, and David Halberstam's The Amateurs. ...more",
+      "expected_category": "Nonfiction",
+      "accepted_categories": [
+        "History"
+      ],
+      "expected_flags": [
+        "duplicate_text",
+        "mismatched_category"
+      ],
+      "notes": "declared Default; clearly nonfiction sports history; a mismatch flag is the honest answer"
+    },
+    {
+      "id": "childrens-picture-book",
+      "label": "wordless picture book",
+      "title": "Birdsong: A Story in Pictures",
+      "declared_category": "Childrens",
+      "url": "https://books.toscrape.com/catalogue/birdsong-a-story-in-pictures_975/index.html",
+      "description": "Bring the thrilling story of one red bird to life. When an innocent bird meets two cruel kids, their world is forever changed. But exactly how that change unfolds is up to you, in the tradition of Kamishibai—Japanese paper theater. The wordless story by master cartoonist James Sturm is like a haiku—the elegant images leave space for children to inhabit this timeless tale—a Bring the thrilling story of one red bird to life. When an innocent bird meets two cruel kids, their world is forever changed. But exactly how that change unfolds is up to you, in the tradition of Kamishibai—Japanese paper theater. The wordless story by master cartoonist James Sturm is like a haiku—the elegant images leave space for children to inhabit this timeless tale—and make it their own, leading them to learn an ultimate lesson they'll never forget.James Sturm is the author of several books for kids including the Adventures in Cartooning series (with Andrew Arnold and Alexis Frederick-Frost) and the forthcoming Ape and Armadillo. James also helped start a college for cartoonists, The Center for Cartoon Studies, in the small railroad village of White River Junction, Vermont. ...more",
+      "expected_category": "Childrens",
+      "accepted_categories": [],
+      "expected_flags": [
+        "duplicate_text"
+      ],
+      "notes": "declared Childrens; a wordless kamishibai picture book — the images carry the story"
+    },
+    {
+      "id": "ambiguous-default",
+      "label": "genuinely debatable genre",
+      "title": "The Coming Woman: A Novel Based on the Life of the Infamous Feminist, Victoria Woodhull",
+      "declared_category": "Default",
+      "url": "https://books.toscrape.com/catalogue/the-coming-woman-a-novel-based-on-the-life-of-the-infamous-feminist-victoria-woodhull_993/index.html",
+      "description": "\"If you have a heart, if you have a soul, Karen Hicks' The Coming Woman will make you fall in love with Victoria Woodhull.\"-Kinky Friedman, author and Governor of the Heart of Texas \"What kind of confidence would it take for a woman to buck the old boy's club of politics in 1872? More than 140 years pre-Hillary, there was Victoria Woodhull. This book takes you back with a \"If you have a heart, if you have a soul, Karen Hicks' The Coming Woman will make you fall in love with Victoria Woodhull.\"-Kinky Friedman, author and Governor of the Heart of Texas \"What kind of confidence would it take for a woman to buck the old boy's club of politics in 1872? More than 140 years pre-Hillary, there was Victoria Woodhull. This book takes you back with a breathtaking, present-tense bird's eye view into a time when women's liberation was primarily confined to one woman's very capable, independent mind. I couldn't put it down.\"---Ruth Buzzi, Golden Globe Award winner and Television Hall of Fame inductee\"Sadly, too many Americans have never heard of Victoria Woodhull, let alone learned of her story: her revolutionary campaign for the presidency at a time when women weren't even allowed to vote, her support for worker's rights, or her feminist commitment to equality, a century before the official battle over the Equal Rights Amendment. But in The Coming Woman, Karen Hicks brings Woodhull's efforts to life, and reminds us that some of our nation's greatest figures aren't always featured in the history books. It is a riveting account of an amazing woman and her struggle for justice and human dignity, told in an engaging and eminently readable style.\"-Tim Wise, author, \"White Like Me: Reflections on Race from a Privileged Son\"\"The Coming Woman\" is a novel based on the life of feminist Victoria Woodhull, the first woman to run for U.S. President, 50 years before women could even vote!Running for President wasn't Victoria's only first as a woman. She was also the first to own a successful Wall Street firm, the first to publish a successful national newspaper, and the first to head the two-million-member Spiritualist Association. She was the first woman to enter the Senate Judiciary Committee chambers to petition for woman's suffrage, her argument changing the entire focus of the suffragist movement by pointing out that the 14th and 15th Amendments already gave women the vote.In her campaign for the Presidency, Victoria Woodhull boldly addressed many of the issues we still face today: equal pay for equal work; freedom in love; corporate greed and political corruption fueled by powerful lobbyists; and the increasing disparity between the rich and the poor, to name only a few. Her outspoken and common-sense ideas may shed a new perspective on the parallel conundrums of today's world.This bold, beautiful, and sexually progressive woman dared to take on society and religion. To make an example of the hypocrisy in what Mark Twain dubbed The Gilded Age, she exposed the extrama",
+      "expected_category": "Historical Fiction",
+      "accepted_categories": [
+        "Fiction"
+      ],
+      "expected_flags": [
+        "duplicate_text"
+      ],
+      "notes": "declared Default; biographical novel about Victoria Woodhull — Historical Fiction or Fiction are both defensible NOTE: the full corpus record is 3411 chars — over the API's 3000-char cap, so the eval sends the first 3000 (what a real client would do)."
+    },
+    {
+      "id": "when-unsure-sparse",
+      "label": "sparse description — when-unsure behaviour",
+      "title": "Penny Maybe",
+      "declared_category": "Default",
+      "url": "https://books.toscrape.com/catalogue/penny-maybe_965/index.html",
+      "description": "Sent to yet another foster family, Penny decides that the way to claim a sense of self is to swim Lake Ontario. Although this seems impossible, she finds the courage to ask her physics teacher to be her coach, and wins the support of her new foster mother.",
+      "expected_category": "other",
+      "accepted_categories": [
+        "Young Adult",
+        "Fiction"
+      ],
+      "expected_flags": [
+        "sparse_description"
+      ],
+      "notes": "declared Default; shortest description in the corpus (256 chars). The prompt says: unsure → 'other', low confidence, sparse_description. A human could also argue Young Adult/Fiction."
+    }
+  ]
+}

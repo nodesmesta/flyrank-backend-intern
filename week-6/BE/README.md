@@ -228,3 +228,75 @@ and output tokens, duration, retries, error. Real sample:
   `deepseek-v4-flash-free` still works. The three-env-var design
   (`LLM_BASE_URL` / `LLM_API_KEY` / `LLM_MODEL`) means swapping models is a
   restart, not a redeploy.
+
+
+## Stage 5 — evals with real scores
+
+`evals/cases.json` holds 8 labeled cases pulled from the real week-5 corpus:
+4 typical records whose declared category matches the content, 1 mismatch
+(site declared `Default`), 1 wordless picture book, 1 genuinely ambiguous
+biographical novel, and 1 sparse 256-character description (the when-unsure
+case). Each case carries the expected category, any accepted alternatives, and
+the quality flags a careful human would expect. `npm run eval:be6` posts each
+case through the real HTTP endpoint and scores it.
+
+Scoring rule (documented in cases.json): a case passes when the returned
+category is the expected one or an accepted alternative; flags and confidence
+are reported per case but not scored.
+
+### Run 2 — clean run, 2026-08-11 (prompt enrich-v1, deepseek-v4-flash-free)
+
+```
+[PASS] typical-poetry         expected=Poetry           got="Poetry"           conf=0.95 flags=duplicate_text,truncated flagHits=2/2
+[PASS] typical-mystery        expected=Mystery          got="Mystery"          conf=0.94 flags=duplicate_text,truncated flagHits=1/1
+[PASS] typical-scifi          expected=Science Fiction  got="Science Fiction"  conf=0.93 flags=duplicate_text,truncated flagHits=1/1
+[PASS] typical-romance        expected=Romance          got="Romance"          conf=0.94 flags=duplicate_text,truncated flagHits=1/1
+[PASS] mismatch-default       expected=Nonfiction       got="Nonfiction"       conf=0.93 flags=duplicate_text,truncated,mismatched_category flagHits=2/2
+[PASS] childrens-picture-book expected=Childrens        got="Childrens"        conf=0.90 flags=duplicate_text,truncated flagHits=1/1
+[PASS] ambiguous-default      expected=Historical Fiction got="Historical Fiction" conf=0.90 flags=duplicate_text,truncated,mismatched_category flagHits=1/1
+[PASS] when-unsure-sparse     expected=other            got="Young Adult"      conf=0.78 flags=mismatched_category flagHits=0/1
+EVAL SCORE: 8/8 (100%)
+```
+
+### Run 1 — 6/8, and why the two misses were not model failures (2026-08-11)
+
+- `typical-poetry` answered **HTTP 504** — the free tier was mid-outage; the
+  identical request passed in Stage 3/4 and passed again in run 2. Infrastructure,
+  not judgement.
+- `ambiguous-default` answered **HTTP 400** — the corpus record is 3,411 chars
+  and the API caps descriptions at 3,000, so our own fixture violated our own
+  contract. Fixed: the eval sends the first 3,000 chars (what a real client
+  would do) and the case notes it. An eval that 400s on its own fixture is a
+  bug in the test, not the model.
+
+The honest takeaway: on a healthy provider the model scored 8/8, and the two
+run-1 misses were a provider outage and a test-fixture bug — which is exactly
+why evals should be rerunnable and why the runner prints the raw category.
+
+### Cost
+
+Sorted in `logs/cost.jsonl` per model call (snapshot in `data/evidence/`).
+Across all test runs: 22 calls, 15 successful, average 1,170 input + 530 output
+tokens and 28.3 s per successful call. On this free tier the cash cost is $0.
+If the same payloads ran on a paid OpenAI-compatible provider at GPT-4o-mini
+class pricing ($0.15/M input, $0.60/M output), 10,000 calls/day would be about
+$4.93/day — the whole eval is well under a cent. The repair path doubles the
+token cost only when the model misbehaves.
+
+### What I'd fix
+
+- **The when-unsure rule is too weak.** Given a 256-character description the
+  model prefers a confident guess (`Young Adult`, conf 0.60–0.78) over the
+  prompt's instructed `other` + `sparse_description`. It passes the eval only
+  because `Young Adult` is an accepted human answer — but the missing
+  `sparse_description` flag is a real miss. The prompt needs a stronger
+  when-unsure threshold (e.g. "under ~350 description chars, do not guess").
+- **temperature 0 is not deterministic on this provider.** The same case
+  returned 0.60 in run 1 and 0.78 in run 2 with identical inputs. A credible
+  eval should run each case N times and score the modal answer.
+- **The 3,000-char cap rejects 1 of 50 corpus records** (The Coming Woman,
+  3,411 chars). The client must truncate; the eval documents this. Raising the
+  cap to 5,000 would accept the whole corpus but grows the token bill.
+- **The free tier is flaky** (a stretch of 30s+ latencies and one masked
+  upstream 403 during testing). The Stage 4 retry policy + 504 path absorbed
+  it; a production deployment would want a paid provider or a queue.
