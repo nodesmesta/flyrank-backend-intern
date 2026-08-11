@@ -18,6 +18,8 @@
     "start:be5": "tsx week-5/BE/src/index.ts",
     "scrape:be5": "tsx week-5/BE/src/index.ts",
     "db:be5": "tsx week-5/BE/src/db.ts",
+    "dev:be6": "tsx watch week-6/BE/src/server.ts",
+    "start:be6": "tsx week-6/BE/src/server.ts",
     "scout:fl07": "tsx week-5/GeneralAIFluency/FL-07/src/agent.ts",
     "capture:fl07": "asciinema rec --overwrite week-5/GeneralAIFluency/FL-07/data/capture/run2.cast -c \"tsx week-5/GeneralAIFluency/FL-07/src/agent.ts\"",
     "dev:portfolio": "next dev week-5/GeneralAIFluency/ShiptheUglyOne/site",
