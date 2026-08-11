@@ -109,3 +109,53 @@ quarantine so the caller only ever receives the validated schema.
   answered `Young Adult` at 0.75 confidence instead of `other` + low
   confidence. A human grader may agree or prefer `other` — that tension is
   precisely why Stage 5 evals 8 cases instead of trusting one example.
+
+
+## Stage 3 — make the output trustworthy
+
+The model is an external source; its answer is raw input. Every answer goes
+through the same pipeline last week's scraper used for scraped pages:
+
+1. **Parse** — strip the code fence / preamble, find the JSON object with a
+   real brace-matching scanner (not regex), `JSON.parse` it.
+2. **Validate** — `safeParse` against the output schema. A structurally valid
+   object with a category we never allowed is still a failure.
+3. **Repair once** — on failure, one more call with the same prompt + the
+   broken output + the exact validation error: *"Your previous answer was
+   rejected for this reason…"*.
+4. **Give up cleanly** — if the second attempt also fails: `422` with a
+   readable message, raw output logged to `logs/quarantine.jsonl` (git-ignored,
+   snapshot in `data/evidence/`), and the process never crashes.
+
+The caller only ever receives the validated schema — never raw model text.
+
+### Checkpoint: a model that ignores the schema (2026-08-11)
+
+The prompt was temporarily tampered to demand the category `Alien` (reverted
+afterwards; `git diff` clean). Result:
+
+```bash
+curl -X POST http://localhost:3000/enrich -H "Content-Type: application/json" \
+  -d '{"record":{"title":"A Light in the Attic","description":"…","url":"…","category":"Poetry"}}'
+```
+
+```json
+HTTP 422
+{"error":"Model output rejected twice (enrich-v1): category: Invalid option: expected one of \"Poetry\"|\"Nonfiction\"|…|\"other\""}
+```
+
+Quarantine line (`logs/quarantine.jsonl`, snapshot in
+`data/evidence/quarantine-example-2026-08-11.jsonl`) records the input, both
+raw outputs, both validation errors and the prompt version.
+
+### What surprised me
+
+- **The repair retry is not theatre.** During the first (weaker) tamper the
+  model's first answer was invalid but the repair pass — which quotes the exact
+  validation error, including the list of valid options — got it to
+  self-correct to a valid category, and the request returned 200. The repair
+  only fails when the prompt actively forbids correction, which is exactly when
+  a 422 is the right answer.
+- Both attempts took ~10 s each (OpenCode Zen free tier); the 422 checkpoint
+  run above took 100 s wall time — two model calls plus SDK-default retries.
+  Stage 4 sets explicit timeouts and a retry policy.

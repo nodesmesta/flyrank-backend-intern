@@ -1,9 +1,9 @@
-// POST /enrich — the endpoint. Stage 2: the model is wired in; its raw text is
-// returned as-is (Stage 3 wraps it in parse + validate + repair + quarantine).
+// POST /enrich — the endpoint. Stage 3: parse + validate + repair once +
+// quarantine; the caller only ever receives the validated schema.
 import { Router } from "express";
 import type { Config } from "../llm/config.js";
-import { complete } from "../llm/client.js";
 import { buildUserMessage, loadSystemPrompt } from "../llm/prompt.js";
+import { enrichWithRepair, UnrepairableOutputError } from "../llm/parse.js";
 import { enrichInputSchema, stubOutput } from "../llm/schema.js";
 
 export function createEnrichRouter(cfg: Config): Router {
@@ -27,13 +27,15 @@ export function createEnrichRouter(cfg: Config): Router {
       return;
     }
 
-    // 3. Real model path.
+    // 3. Real model path — validated schema out, or a clear 422.
     try {
-      const raw = await complete(cfg, loadSystemPrompt(), buildUserMessage(record));
-      // Stage 2 only: return whatever the model said. From Stage 3 the caller
-      // gets the validated schema — never raw model text.
-      res.status(200).json({ raw_model_output: raw });
+      const output = await enrichWithRepair(cfg, loadSystemPrompt(), buildUserMessage(record), record);
+      res.status(200).json(output);
     } catch (err) {
+      if (err instanceof UnrepairableOutputError) {
+        res.status(422).json({ error: err.message });
+        return;
+      }
       res.status(502).json({ error: `Model call failed: ${(err as Error).message}` });
     }
   });
