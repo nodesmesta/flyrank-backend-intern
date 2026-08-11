@@ -6,6 +6,10 @@ LLM, and returns clean, schema-validated JSON — with a real timeout, retries
 that know when to stop, a cost log and a kill switch. One request in, one
 structured answer out. This is not a chatbot.
 
+The assignment's job card lives in [`JOB-CARD.md`](JOB-CARD.md) — the closed
+lists, the output contract and the "never" rules are all defined there and
+mirrored in code (`src/llm/schema.ts`).
+
 ```
 validate the input  -> reject garbage before you spend a call
 build the prompt    -> from a versioned file
@@ -22,6 +26,7 @@ From the repo root (monorepo scripts follow the `:be` convention):
 ```bash
 npm run dev:be6     # watch mode
 npm run start:be6   # one-shot
+npm run eval:be6    # 8-case eval against http://localhost:3000 (ENRICH_URL overrides)
 ```
 
 Config lives in `week-6/BE/.env` (git-ignored; `.env.example` documents it):
@@ -32,12 +37,14 @@ Config lives in `week-6/BE/.env` (git-ignored; `.env.example` documents it):
 
 | Method | Path | Description | Status codes |
 |--------|------|-------------|--------------|
-| POST | `/enrich` | Enrich one week-5 book record → category (closed list), confidence, one-sentence summary, quality_flags | 200, 400, 501* |
+| POST | `/enrich` | Enrich one week-5 book record → category (closed list), confidence, one-sentence summary, quality_flags | 200, 400, 422, 502, 504, 503 |
 | GET | `/health` | Liveness probe | 200 |
 
-\* The response shape is intermediate: `raw_model_output` in Stage 2; from Stage 3
-the caller always receives the validated schema. Final states: 200 / 400 / 422
-(unrepairable model output) / 504 (timeout) / 503 (kill switch).
+Status meanings: `200` validated schema · `400` invalid input naming the field
+(before any model call) · `422` model output rejected twice and quarantined ·
+`502` provider failure or retries exhausted on a retryable error · `504` model
+call timed out · `503` kill switch (`LLM_ENABLED=false`). The caller never
+receives raw model text.
 
 ### Valid request (stub mode — `LLM_STUB=1`, zero model calls)
 
