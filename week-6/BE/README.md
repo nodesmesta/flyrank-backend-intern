@@ -159,3 +159,72 @@ raw outputs, both validation errors and the prompt version.
 - Both attempts took ~10 s each (OpenCode Zen free tier); the 422 checkpoint
   run above took 100 s wall time — two model calls plus SDK-default retries.
   Stage 4 sets explicit timeouts and a retry policy.
+
+
+## Stage 4 — timeouts, retries, kill switch, cost
+
+### Retry policy (chosen explicitly, not the SDK default)
+
+The openai SDK's own retries are disabled (`maxRetries: 0`) — no silent extra
+calls. Our loop retries only the failures worth retrying, with exponential
+backoff + jitter (1s, 2s, 4s):
+
+| Failure | Retried? | Why |
+|---|---|---|
+| timeout (`LLM_TIMEOUT_MS`, default 30000) | yes, 1s/2s/4s + jitter | transient |
+| connection error | yes, same backoff | transient |
+| `429` rate limit | yes, honours `Retry-After` | transient |
+| `5xx` provider error | yes, same backoff | transient |
+| `400` / `401` / `403` | **no** | a bad key is still a bad key in four seconds — on a free tier every pointless retry burns quota |
+| `403` with an `Upstream request failed` / `server_error` body | yes | the zen gateway masks its own upstream failures as 403 (see surprises) |
+
+### Verified failure paths (all tested 2026-08-11, isolated port 3100)
+
+**Kill switch → 503, zero model calls.** `LLM_ENABLED=false` answers
+immediately; the cost log stays untouched:
+
+```bash
+$ curl -X POST http://localhost:3000/enrich -H "Content-Type: application/json" -d '{"record":{…}}'
+HTTP 503  {"error":"AI enrichment is disabled (LLM_ENABLED=false)"}   # 0.0 s
+```
+
+**Bad key → 502, fail fast.** `LLM_API_KEY=dummy` — a 401 is never retried,
+one attempt only:
+
+```bash
+HTTP 502  {"error":"Model call failed after 1 attempt: 401: 401 Invalid API key."}   # 0.9 s
+```
+
+**Timeout → 504.** `LLM_TIMEOUT_MS=100` — four attempts at 100 ms each, backoff
+1s/2s/4s between them, then a clean 504:
+
+```bash
+HTTP 504  {"error":"Model call timed out after 100 ms (retries exhausted)"}   # 8.3 s
+```
+
+### Cost log (`logs/cost.jsonl`, git-ignored; snapshot in `data/evidence/`)
+
+One structured line per model call: prompt version, repair flag, model, input
+and output tokens, duration, retries, error. Real sample:
+
+```json
+{"ts":"…","prompt_version":"enrich-v1","repair":false,"model":"deepseek-v4-flash-free","input_tokens":1092,"output_tokens":228,"duration_ms":10852,"retries":0,"error":null}
+```
+
+### What surprised me
+
+- **The zen free-tier gateway masks upstream failures as 403.** The error text
+  is `403 Error from provider (Console): Upstream request failed: [server_error]
+  Upstream response was not valid JSON` — a transient provider-side failure
+  wearing an auth status. The retry policy classifies by the error *body*, not
+  the status code alone: `upstream`/`server_error` 403s are retried, real auth
+  403s are not.
+- **The free tier is flaky and slow.** One testing hour produced the 403-masked
+  failure above and a stretch of full 30s timeouts; the identical request
+  succeeded two minutes later in 11 s. The 504 path got exercised for real,
+  not just in theory.
+- **The model pool changed under us.** `minimax-m2.5-free` and
+  `qwen3.6-plus-free` now answer `ModelError: not supported`; only
+  `deepseek-v4-flash-free` still works. The three-env-var design
+  (`LLM_BASE_URL` / `LLM_API_KEY` / `LLM_MODEL`) means swapping models is a
+  restart, not a redeploy.

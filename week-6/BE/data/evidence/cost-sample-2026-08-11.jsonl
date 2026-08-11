@@ -1,0 +1,5 @@
+{"ts":"2026-08-11T05:18:06.869Z","prompt_version":"enrich-v1","repair":false,"model":"deepseek-v4-flash-free","input_tokens":null,"output_tokens":null,"duration_ms":872,"retries":0,"error":"401 Invalid API key."}
+{"ts":"2026-08-11T05:19:15.718Z","prompt_version":"enrich-v1","repair":false,"model":"deepseek-v4-flash-free","input_tokens":null,"output_tokens":null,"duration_ms":8219,"retries":3,"error":"Request timed out."}
+{"ts":"2026-08-11T05:20:08.705Z","prompt_version":"enrich-v1","repair":false,"model":"deepseek-v4-flash-free","input_tokens":null,"output_tokens":null,"duration_ms":9449,"retries":0,"error":"403 Error from provider (Console): Upstream request failed: [server_error] Upstream response was not valid JSON"}
+{"ts":"2026-08-11T05:58:01.012Z","prompt_version":"enrich-v1","repair":false,"model":"deepseek-v4-flash-free","input_tokens":null,"output_tokens":null,"duration_ms":107614,"retries":3,"error":"Request timed out."}
+{"ts":"2026-08-11T06:15:26.910Z","prompt_version":"enrich-v1","repair":false,"model":"deepseek-v4-flash-free","input_tokens":1092,"output_tokens":228,"duration_ms":10852,"retries":0,"error":null}

@@ -114,14 +114,15 @@ export async function enrichWithRepair(
   user: string,
   record: BookRecord,
 ): Promise<EnrichOutput> {
-  const first = await complete(cfg, system, user);
+  const meta = { promptVersion: PROMPT_VERSION, repair: false };
+  const first = await complete(cfg, system, user, meta);
   const r1 = parseEnrichment(first);
   if ("output" in r1) return r1.output;
 
   const repairUser =
     `${user}\n\nYour previous answer was rejected for this reason: ${r1.error}\n` +
     "Return only corrected JSON matching the schema. Do not add commentary.";
-  const second = await complete(cfg, system, repairUser);
+  const second = await complete(cfg, system, repairUser, { ...meta, repair: true });
   const r2 = parseEnrichment(second);
   if ("output" in r2) return r2.output;
 
