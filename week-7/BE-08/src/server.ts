@@ -1,18 +1,70 @@
 // Express API — week-7/BE-08 "PDF report generator" (Assignment A8).
 //
-// Stage 0 starts with the same liveness probe as A1. Later stages add the
-// report pipeline in the request path (plain endpoint — no background job,
-// per the assignment's required stages): query SQL -> render HTML -> print to
-// PDF -> store on disk -> serve by link.
+// The pipeline runs inside a plain endpoint (no background job — that is the
+// assignment's required path): query SQL -> render HTML -> print to PDF -> store
+// on disk -> serve by link. Stage 4 wires the endpoints; Stage 5 adds the
+// once-per-day idempotency check.
 import express from "express";
+import crypto from "node:crypto";
+import path from "node:path";
+import fs from "node:fs";
+import { getDb } from "./db.js";
+import { generateReportPdf, REPORTS_DIR } from "./report.js";
 
 const PORT = Number(process.env.PORT ?? 3000);
 
 const app = express();
 app.use(express.json());
 
+interface ReportRow {
+  id: string;
+  path: string;
+  created_at: string;
+}
+
 app.get("/health", (_req, res) => {
   res.status(200).json({ status: "ok" });
+});
+
+// Run the whole pipeline in the request: query -> render <id>.pdf -> record the
+// row -> answer 201 with a link. Yes, it takes a few seconds — that is allowed
+// here, and it is exactly the wait that a background job would one day absorb.
+app.post("/reports", async (req, res) => {
+  const id = crypto.randomUUID();
+  const filePath = path.join(REPORTS_DIR, `${id}.pdf`);
+  const createdAt = new Date().toISOString();
+
+  await generateReportPdf(filePath); // the visible pause
+  getDb()
+    .prepare("INSERT INTO reports (id, path, created_at) VALUES (?, ?, ?)")
+    .run(id, filePath, createdAt);
+
+  res.status(201).json({ id, file: `/reports/${id}/file` });
+});
+
+// The row, including the file link. JSON stays tiny — only the download
+// endpoint moves the bytes ("store and link").
+app.get("/reports/:id", (req, res) => {
+  const row = getDb()
+    .prepare("SELECT id, path, created_at FROM reports WHERE id = ?")
+    .get(req.params.id) as ReportRow | undefined;
+  if (!row) {
+    res.status(404).json({ error: "Report not found" });
+    return;
+  }
+  res.status(200).json({ id: row.id, created_at: row.created_at, file: `/reports/${row.id}/file` });
+});
+
+// Serve the stored PDF from disk. The only endpoint that moves megabytes.
+app.get("/reports/:id/file", (req, res) => {
+  const row = getDb()
+    .prepare("SELECT path FROM reports WHERE id = ?")
+    .get(req.params.id) as Pick<ReportRow, "path"> | undefined;
+  if (!row || !fs.existsSync(row.path)) {
+    res.status(404).json({ error: "Report file not found" });
+    return;
+  }
+  res.sendFile(row.path);
 });
 
 const server = app.listen(PORT, () => {
