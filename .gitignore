@@ -1,7 +1,9 @@
 node_modules/
 dist/
+.next/
 .env
 *.log
+*.tsbuildinfo
 
 # Except the week-5 polite scraper evidence log, which is a committed deliverable
 !week-5/BE/data/evidence/*.log
