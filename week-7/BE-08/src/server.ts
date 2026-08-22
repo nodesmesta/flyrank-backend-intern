@@ -29,7 +29,30 @@ app.get("/health", (_req, res) => {
 // Run the whole pipeline in the request: query -> render <id>.pdf -> record the
 // row -> answer 201 with a link. Yes, it takes a few seconds — that is allowed
 // here, and it is exactly the wait that a background job would one day absorb.
+//
+// Stage 5 idempotency: a double-click must make ONE report for the day. If a
+// report was already generated today, answer 200 with the existing id+link and
+// build nothing; { force: true } skips the check and makes a fresh one (201).
 app.post("/reports", async (req, res) => {
+  const force = (req.body as { force?: unknown } | undefined)?.force === true;
+  const today = new Date().toISOString().slice(0, 10); // shared UTC "today" key
+
+  if (!force) {
+    const existing = getDb()
+      .prepare(
+        "SELECT id, path, created_at FROM reports WHERE substr(created_at,1,10) = ? ORDER BY created_at DESC LIMIT 1",
+      )
+      .get(today) as ReportRow | undefined;
+    if (existing) {
+      res.status(200).json({
+        id: existing.id,
+        created_at: existing.created_at,
+        file: `/reports/${existing.id}/file`,
+      });
+      return;
+    }
+  }
+
   const id = crypto.randomUUID();
   const filePath = path.join(REPORTS_DIR, `${id}.pdf`);
   const createdAt = new Date().toISOString();
