@@ -1,6 +1,6 @@
 // Entry point — Express API with one AI-backed endpoint (POST /enrich).
 // Same shape as the earlier BE assignments (BE-02/BE-03): express + json body
-// parsing + a route module; config lives in week-6/BE/.env.
+// parsing + a route module; config lives in week-6/BE-07/.env.
 import express from "express";
 import { loadConfig } from "./llm/config.js";
 import { createEnrichRouter } from "./routes/enrich.js";

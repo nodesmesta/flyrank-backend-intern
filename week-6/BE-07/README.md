@@ -1,4 +1,4 @@
-# Week 6 · BE — Put an LLM behind your API (POST /enrich)
+# Week 6 · BE-07 — Put an LLM behind your API (POST /enrich)
 
 One new endpoint on the API grown across the program: it takes a scraped book
 record from the week-5 corpus (books.toscrape.com), sends the messy parts to an
@@ -29,7 +29,7 @@ npm run start:be6   # one-shot
 npm run eval:be6    # 8-case eval against http://localhost:3000 (ENRICH_URL overrides)
 ```
 
-Config lives in `week-6/BE/.env` (git-ignored; `.env.example` documents it):
+Config lives in `week-6/BE-07/.env` (git-ignored; `.env.example` documents it):
 `LLM_BASE_URL`, `LLM_API_KEY`, `LLM_MODEL`, `LLM_STUB`, `LLM_ENABLED`,
 `LLM_TIMEOUT_MS`, `PORT`.
 

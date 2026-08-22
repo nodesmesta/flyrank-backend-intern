@@ -14,5 +14,5 @@ tasks.db
 *.db-wal
 *.db-shm
 
-# Runtime logs for week-6 BE (quarantine/cost); evidence snapshots live in data/evidence
-week-6/BE/logs/
+# Runtime logs for week-6 BE-07 (quarantine/cost); evidence snapshots live in data/evidence
+week-6/BE-07/logs/

@@ -32,8 +32,12 @@ Flyrank-intern/
 │   ├── BE-03/
 │   └── GeneralAIFluency/
 │
-└── week-5/
-    ├── BE/
+├── week-5/
+│   ├── BE/
+│   └── GeneralAIFluency/
+│
+└── week-6/
+    ├── BE-07/
     └── GeneralAIFluency/
 ```
 

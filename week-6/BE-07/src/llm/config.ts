@@ -1,5 +1,5 @@
 // Environment loader for the week-6 BE task.
-// dotenv reads week-6/BE/.env (explicit path — the CWD when scripts run from
+// dotenv reads week-6/BE-07/.env (explicit path — the CWD when scripts run from
 // the repo root is the root, not this folder). Same pattern as BE-03.
 import { config as loadDotenv } from "dotenv";
 import { dirname, resolve } from "node:path";
