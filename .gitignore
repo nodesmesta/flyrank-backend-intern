@@ -16,3 +16,6 @@ tasks.db
 
 # Runtime logs for week-6 BE-07 (quarantine/cost); evidence snapshots live in data/evidence
 week-6/BE-07/logs/
+
+# Generated PDF reports for week-7 BE-08 (the seed script + API are the recipe)
+week-7/BE-08/reports/
