@@ -109,9 +109,24 @@ would schedule it daily.
 ## Dashboard
 
 The Dev Server's dashboard (localhost:8288) shows every function, run, step
-and retry live:
+and retry live. Two views capture what this session produced — the run stream
+and a single completed `say-hello` run:
 
-![Inngest dashboard with runs](data/evidence/dashboard-runs.png)
+<div align="center" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+  <figure style="flex:1 1 46%; min-width:280px; margin:0;">
+    <img src="data/evidence/dashboard-runs.png" alt="Inngest dashboard — runs stream" width="100%"/>
+    <figcaption style="text-align:center; font-size:12px; opacity:.8;">
+      Runs stream: completed <code>make-report</code> runs, the failed
+      <code>fail</code> run, and <code>heartbeat</code> ticks
+    </figcaption>
+  </figure>
+  <figure style="flex:1 1 46%; min-width:280px; margin:0;">
+    <img src="data/evidence/dashboard-hello.png" alt="Inngest dashboard — say-hello run" width="100%"/>
+    <figcaption style="text-align:center; font-size:12px; opacity:.8;">
+      <code>say-hello</code> — a completed single-function run
+    </figcaption>
+  </figure>
+</div>
 
 A completed `make-report` run shows its two steps; a `topic: "fail"` run shows
 the three attempts ending **Failed**; `heartbeat` appears once a minute with
