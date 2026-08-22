@@ -41,7 +41,8 @@ Flyrank-intern/
     └── GeneralAIFluency/
 
 └── week-7/
-    └── BE-06/
+    ├── BE-06/
+    └── BE-08/
 ```
 
 Each week folder contains the backend task(s) (`BE-xx`) and a `GeneralAIFluency/` folder with the AI fluency tasks for that period. Every task folder holds its own `README.md`, the task brief, and a `data/` folder with prompts, sources, and output artifacts. All dependencies and run scripts live in the root `package.json` (single hoisted install — run everything from the repository root).
