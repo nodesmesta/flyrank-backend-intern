@@ -12,9 +12,9 @@ environment in which the flow editor (Phase 2) and the Inngest-executed AI graph
 
 | Phase | Goal | Status |
 |-------|------|--------|
-| 1 | Setup — app, React Flow, Inngest, OpenAI SDK, Shadcn, env, structure | ✅ **done (this commit)** |
-| 2 | Foundations — visual flow editor, YES/NO edge types, editable prompts | ⏳ next |
-| 3 | Build — every node → Inngest step, LLM returns YES/NO, dynamic traversal | ⏳ todo |
+| 1 | Setup — app, React Flow, Inngest, OpenAI SDK, Shadcn, env, structure | ✅ done |
+| 2 | Foundations — visual flow editor, YES/NO edge types, editable prompts | ✅ **done (this commit)** |
+| 3 | Build — every node → Inngest step, LLM returns YES/NO, dynamic traversal | ⏳ next |
 | 4 | Polish — ≥3 of: execution state, logs panel, save/load, export/import, styling, retries | ⏳ todo |
 
 ## Summary
@@ -34,6 +34,40 @@ environment in which the flow editor (Phase 2) and the Inngest-executed AI graph
   primitives, so the UI is consistent without the full shadcn CLI.
 - **LLM provider configured**: `openai` SDK + OpenCode Zen free tier (the lane
   already proven in this repo at week-6) — three env vars ready for Phase 3.
+- **Interactive editor (Phase 2)**: add nodes from a palette, drag between
+  handles to connect (a decision forks into YES / NO), click a prompt to edit it
+  inline, arrange nodes freely, and delete with Del — the whole graph is
+  persisted to `localStorage` and restored on reload.
+
+## The flow editor (Phase 2)
+
+The canvas is now a working editor, not a static picture:
+
+- **Add nodes** from the panel — `Start`, `AI decision` (the YES/NO question),
+  and `Outcome`.
+- **Connect nodes** by dragging from a source dot to a target dot. A decision
+  node exposes **two** source handles (`YES` and `NO`), so the branch you draw is
+  encoded straight into the edge; the start node has one neutral output.
+- **YES / NO edge types** — three custom edge components (`yesedge` emerald,
+  `noedge` rose, `flowedge` stone) render the smooth-step path, an arrowhead and
+  a `YES` / `NO` badge, and each edge stores `data.branch` (`yes` / `no` /
+  `next`) — the exact field Phase 3's executor will read.
+- **Edit node prompts** inline — click any prompt or label, type, Enter commits
+  (Escape cancels). `updateNodeData` keeps the graph state controlled.
+- **Store graph state locally** — every edit writes `{nodes, edges}` to
+  `localStorage` (`be9:workflow:v1`); on load the editor restores what you
+  saved, or falls back to the two-branch example.
+
+Verified against the running dev server (Playwright drives the real UI):
+
+```
+initial graph                     4 nodes, 3 edges (YES + NO example)
+click "+ AI decision", "+ Outcome" → 6 nodes
+drag the decision's YES handle onto an Outcome node → 4 edges (3 → 4)
+click a prompt, type, Enter  →  localStorage gains "Is this a billing issue?"
+reload ↓                        edited graph restored (6 nodes, 4 edges)
+console                         0 errors
+```
 
 ## Run it
 
@@ -93,14 +127,22 @@ site renders: 1 React Flow container, decision node rendered,
 next build week-7/BE-09/site               Compiled + TypeScript passed (exit 0)
 ```
 
-The React Flow canvas, rendered by the running dev server:
+The two evidence captures — the Phase 1 health check and the Phase 2 interactive editor in use:
 
-<div align="center">
-  <figure style="margin:0;">
-    <img src="data/evidence/site-phase1.png" alt="BE-09 site — Phase 1" width="90%"/>
+<div align="center" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+  <figure style="flex:1 1 46%; min-width:300px; margin:0;">
+    <img src="data/evidence/site-phase1.png" alt="BE-09 site — Phase 1" width="100%"/>
     <figcaption style="text-align:center; font-size:12px; opacity:.8;">
-      Phase 1 health check: header, stack badges, disabled Run button, and the
-      two-branch YES/NO decision graph on the React Flow canvas
+      Phase 1: header, stack badges, disabled Run button, and the two-branch
+      YES/NO graph on the React Flow canvas
+    </figcaption>
+  </figure>
+  <figure style="flex:1 1 46%; min-width:300px; margin:0;">
+    <img src="data/evidence/editor-phase2.png" alt="BE-09 editor — Phase 2" width="100%"/>
+    <figcaption style="text-align:center; font-size:12px; opacity:.8;">
+      Phase 2: the interactive editor — node palette (top-left), an added
+      decision + outcome node, a freshly connected YES edge, and the edited
+      prompt persisted to localStorage
     </figcaption>
   </figure>
 </div>
@@ -132,25 +174,32 @@ week-7/BE-09/
 │   └── src/
 │       ├── app/            layout.tsx, page.tsx, globals.css (Tailwind + React Flow)
 │       ├── components/
-│       │   ├── flow/FlowCanvas.tsx     two-branch YES/NO graph
+│       │   ├── flow/
+│       │   │   ├── FlowCanvas.tsx     controlled editor (add/connect/delete/persist)
+│       │   │   ├── nodes.tsx          Start / AI-decision / Outcome (+ editable prompt)
+│       │   │   ├── edges.tsx          YES / NO / flow custom edge types
+│       │   │   └── types.ts           AppNode/AppEdge types, palette, branch mapping
 │       │   └── ui/                     button.tsx, card.tsx (shadcn-light)
 │       └── lib/utils.ts                cn() helper
-└── data/evidence/          site-phase1.png
+└── data/evidence/          site-phase1.png, editor-phase2.png
 ```
 
 ## Conclusion
 
-Phase 1 proves the three moving parts of an AI workflow product actually talk to
-each other on this machine before any business logic exists. The Next.js site
-genuinely renders a React Flow graph of the assignment's own example — a request
-routed by "Is this a support request?" down a YES or a NO edge. The Inngest Dev
-Server discovers and completes a real function run over `/api/inngest`, so Phase 3
-has its execution loop already warm. The only storage decision deferred is the
-graph state itself (local, Phase 2); the only integration deferred is the model
-call (Phase 3), whose provider and env vars are already configured.
+Phase 1 proved the three moving parts of an AI workflow product talk to each
+other on this machine — the Next.js site renders the brief's own two-branch
+graph, and the Inngest Dev Server completes a real run over `/api/inngest`. Phase
+2 turns that static canvas into the actual thing a workflow operator uses: nodes
+come from a palette, connections are drawn handle-to-handle with the YES/NO
+branch baked into the edge (and stored as `data.branch` for the executor), prompts
+are edited in place, and the whole graph survives a reload in `localStorage`.
+The graph is no longer a data structure I type out — it is a shape the user builds.
 
-The one lesson that carries forward from the wiring is the Inngest v4 shape this
-monorepo settled on in BE-06: the trigger lives inside the options object, the
-`express.json()` middleware must run before the `serve` adapter, and `INNGEST_DEV=1`
-keeps the SDK in local mode. Reusing that verified pattern means Phase 3's
-executor is a matter of adding steps to a function the loop already runs.
+Two things carry forward into Phase 3. First, the graph is now a clean serializable
+contract — an array of `{kind, prompt}` nodes and `{source, target, branch}` edges —
+which is exactly the payload the Inngest executor will consume. Second, the
+Inngest v4 wiring settled in BE-06 (trigger in the options object, `express.json()`
+before the `serve` adapter, `INNGEST_DEV=1`) means Phase 3's executor is a matter
+of walking that graph with `step.run(...)` per node and following the LLM's `YES`
+or `NO` along `data.branch` — the loop is already warm.
+
