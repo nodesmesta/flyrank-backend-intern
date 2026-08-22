@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Background,
   Controls,
@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { DecisionNode, EndNode, StartNode } from "./nodes";
 import { FlowEdge, NoEdge, YesEdge } from "./edges";
+import { fetchRun, startRun, type Run } from "@/lib/api";
 import {
   PALETTE,
   STORAGE_KEY,
@@ -68,6 +69,81 @@ function Editor() {
   const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>(saved?.nodes ?? defaultNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState<AppEdge>(saved?.edges ?? defaultEdges);
   const [lastAction, setLastAction] = useState<string | null>(null);
+  const [run, setRun] = useState<Run | null>(null);
+  const [running, setRunning] = useState(false);
+  const aliveRef = useRef(true);
+  useEffect(() => {
+    aliveRef.current = true;
+    return () => {
+      aliveRef.current = false;
+    };
+  }, []);
+
+  // Send the current graph to the backend, then poll /runs/:id until the
+  // executor finishes, so the traversal (path + YES/NO trace) streams in.
+  const runNow = useCallback(async () => {
+    const graph = {
+      nodes: nodes.map(({ id, type, data }) => ({ id, type, data })),
+      edges: edges.map(({ id, source, target, sourceHandle, data }) => ({
+        id,
+        source,
+        target,
+        sourceHandle: sourceHandle ?? undefined,
+        data,
+      })),
+    };
+    setLastAction("Starting workflow run…");
+    setRunning(true);
+    try {
+      const started = await startRun(graph.nodes, graph.edges);
+      setRun(started);
+      for (let i = 0; i < 80; i++) {
+        await new Promise((r) => setTimeout(r, 900));
+        if (!aliveRef.current) return;
+        const next = await fetchRun(started.id);
+        setRun(next);
+        if (next.status === "done" || next.status === "failed") {
+          setRunning(false);
+          setLastAction(
+            next.status === "done"
+              ? `Done → ${next.result?.outcome ?? "finished"}`
+              : `Failed: ${next.error ?? "unknown error"}`,
+          );
+          return;
+        }
+      }
+      setRunning(false);
+      setLastAction("Timed out waiting for the run");
+    } catch (err) {
+      setRunning(false);
+      setLastAction(err instanceof Error ? err.message : "Could not start the run");
+    }
+  }, [nodes, edges]);
+
+  // Highlight the node currently being decided (blue ring) and already-visited
+  // nodes (faded) during a run.
+  const visitedIds = useMemo(
+    () => new Set<string>(run?.status === "running" || run?.status === "done" ? run.path : []),
+    [run],
+  );
+  const activeId = run?.status === "running" ? run.currentNodeId : null;
+  const displayNodes = useMemo(
+    () =>
+      nodes.map((n) => {
+        const cls = n.id === activeId ? "rf-active" : visitedIds.has(n.id) ? "rf-vis" : "";
+        return cls ? { ...n, className: cls } : n;
+      }),
+    [nodes, activeId, visitedIds],
+  );
+
+  const statusPill =
+    run === null
+      ? null
+      : run.status === "done"
+        ? { text: `Done · ${run.result?.outcome ?? "finished"}`, cls: "bg-emerald-600 text-white" }
+        : run.status === "failed"
+          ? { text: `Failed · ${run.error}`, cls: "bg-rose-600 text-white" }
+          : { text: `Running… (${run.path?.length ?? 0} visited)`, cls: "bg-indigo-600 text-white" };
 
   // Store graph state locally — every edit persists so a reload keeps the flow.
   useEffect(() => {
@@ -124,7 +200,7 @@ function Editor() {
   return (
     <div className="h-full w-full">
       <ReactFlow<AppNode, AppEdge>
-        nodes={nodes}
+        nodes={displayNodes}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
@@ -157,11 +233,47 @@ function Editor() {
           </div>
         </Panel>
 
+        <Panel position="top-right">
+          <Button onClick={runNow} disabled={running} className="shadow-sm">
+            {running ? "Running…" : "Run workflow"}
+          </Button>
+        </Panel>
+
         <Panel position="bottom-center">
           <div className="rounded-full bg-white/90 px-3 py-1 text-xs text-stone-500 shadow-sm backdrop-blur">
             Drag to arrange · drag a dot to connect (a decision forks into YES / NO) · click a
             prompt to edit · select + Del to remove
           </div>
+        </Panel>
+
+        <Panel position="bottom-right">
+          {statusPill && (
+            <div className="flex flex-col items-end gap-2">
+              <span className={`rounded-full px-3 py-1 text-xs font-medium ${statusPill.cls}`}>
+                {statusPill.text}
+              </span>
+              {run && run.trace.length > 0 && (
+                <div className="max-h-40 w-72 overflow-auto rounded-lg border border-stone-200 bg-white/95 p-2 text-xs shadow-sm backdrop-blur">
+                  <div className="mb-1 font-semibold text-stone-600">
+                    Execution order
+                  </div>
+                  {run.trace.map((t, i) => (
+                    <div key={i} className="flex items-start gap-1.5 border-b border-stone-100 py-1 last:border-0">
+                      <span className="text-stone-400">{i + 1}.</span>
+                      <span className="flex-1 text-stone-700">{t.prompt}</span>
+                      <span
+                        className={`rounded px-1.5 py-0.5 font-bold ${
+                          t.answer === "YES" ? "bg-emerald-50 text-emerald-700" : "bg-rose-50 text-rose-700"
+                        }`}
+                      >
+                        {t.answer}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </Panel>
       </ReactFlow>
 

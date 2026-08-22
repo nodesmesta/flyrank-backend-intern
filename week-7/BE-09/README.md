@@ -13,9 +13,9 @@ environment in which the flow editor (Phase 2) and the Inngest-executed AI graph
 | Phase | Goal | Status |
 |-------|------|--------|
 | 1 | Setup — app, React Flow, Inngest, OpenAI SDK, Shadcn, env, structure | ✅ done |
-| 2 | Foundations — visual flow editor, YES/NO edge types, editable prompts | ✅ **done (this commit)** |
-| 3 | Build — every node → Inngest step, LLM returns YES/NO, dynamic traversal | ⏳ next |
-| 4 | Polish — ≥3 of: execution state, logs panel, save/load, export/import, styling, retries | ⏳ todo |
+| 2 | Foundations — visual flow editor, YES/NO edge types, editable prompts | ✅ done |
+| 3 | Build — every node → Inngest step, LLM returns YES/NO, dynamic traversal | ✅ **done (this commit)** |
+| 4 | Polish — ≥3 of: execution state, logs panel, save/load, export/import, styling, retries | ⏳ next |
 
 ## Summary
 
@@ -38,6 +38,48 @@ environment in which the flow editor (Phase 2) and the Inngest-executed AI graph
   handles to connect (a decision forks into YES / NO), click a prompt to edit it
   inline, arrange nodes freely, and delete with Del — the whole graph is
   persisted to `localStorage` and restored on reload.
+- **Executor (Phase 3)**: **Run workflow** sends the graph to `POST /runs`; an
+  Inngest `run-workflow` function walks it — every decision node is a
+  `step.run` that asks the LLM for YES/NO and follows the matching edge — while
+  the editor polls `GET /runs/:id` and shows the traversal order as it happens.
+  The model answers are real (OpenCode Zen free tier, verified live).
+
+## The executor (Phase 3)
+
+The editor's **Run workflow** button is wired end-to-end:
+
+1. The current graph (`{nodes, edges}`) is POSTed to `POST /runs`. The endpoint
+   validates, saves a run, fires the `workflow/run.requested` event and answers
+   `202` instantly — no slow work in the request.
+2. Inngest runs the **`run-workflow`** function: it starts at the `start` node
+   and walks the graph, pushing each visit to the run's `path`. For every
+   `decision` node it performs a **`step.run`** that sends the node's prompt to
+   the LLM and requires a single-word `YES` or `NO` (parse + one repair retry
+   via `src/llm/client.ts`); it then follows the edge whose `data.branch`
+   matches the answer. Reaching an `end` node finishes the run with its outcome
+   label.
+3. `GET /runs/:id` reports progress — `queued → running` (with the live `path`
+   and current node) `→ done` (with the `trace`: each prompt → `YES`/`NO`) or
+   `failed`. The editor polls it and highlights the flow as it traverses.
+
+Verified live against the running backend (real HTTP):
+
+```
+POST /runs  (default two-branch graph)   HTTP 202  { id, status: "queued", startNodeId }
+GET /runs/:id  => done
+  path:     ["start", "gate", "support"]
+  trace:    [{ prompt: "Is this a support request?", answer: "YES", model: "hy3-free" }]
+  result:   { endNodeId: "support", outcome: "Support queue" }
+POST /runs (neutral prompt)              -> NO branch   -> end "Phone"
+POST /runs (decision missing a NO edge)  -> failed     "No NO edge from decision node d"
+POST /runs {"edges":[]}                  -> 400         "nodes array is required…"
+GET  /runs/unknown                       -> 404         "Run not found"
+```
+
+And the real (non-stub) model call is documented: today the Zen free pool
+rotated again (`deepseek-v4-flash-free` → "Model is unavailable", so I probed
+`/models` and switched to **`hy3-free`**). The run above used a real `hy3-free`
+call that answered `YES`.
 
 ## The flow editor (Phase 2)
 
@@ -104,45 +146,73 @@ INNGEST_DEV=1 npx tsx week-7/BE-09/src/test-ping.ts
 
 Environment lives in `week-7/BE-09/.env` (copy `.env.example`), loaded explicitly
 by `src/config.ts`. The LLM variables (`LLM_BASE_URL`, `LLM_API_KEY`,
-`LLM_MODEL`) are consumed in Phase 3; the free tier needs an **empty** key (only
-a non-empty key is signed onto the Authorization header).
+`LLM_MODEL`, plus `LLM_STUB`, `LLM_ENABLED`, `LLM_TIMEOUT_MS`) drive the Phase 3
+executor; the free tier needs an **empty** key (only a non-empty key is signed
+onto the Authorization header).
+
+Run a workflow by hand:
+
+```bash
+curl -X POST http://localhost:3000/runs \
+  -H "Content-Type: application/json" \
+  -d '{"nodes":[{"id":"s","type":"start","data":{"kind":"start","label":"Go"}},{"id":"d","type":"decision","data":{"kind":"decision","prompt":"Is this a support request?"}},{"id":"Y","type":"end","data":{"kind":"end","label":"Support"}}],"edges":[{"id":"a","source":"s","target":"d","sourceHandle":"next","data":{"branch":"next"}},{"id":"b","source":"d","target":"Y","sourceHandle":"yes","data":{"branch":"yes"}}]}'
+# -> 202 { id, status: "queued", startNodeId: "s" }
+curl http://localhost:3000/runs/<id>      # -> done + trace (with the real model)
+```
 
 ## Endpoints
 
 | Method | Path | Description | Status |
 |--------|------|-------------|--------|
 | GET | `/health` | Liveness probe | `200` |
+| POST | `/runs` | Accept a graph `{ nodes, edges }`, save a run, dispatch `workflow/run.requested` to Inngest, answer instantly | `202`, `400` (missing/empty nodes or edges) |
+| GET | `/runs/:id` | Execution state: path, current node, YES/NO trace, or `failed` with reason | `200`, `404` unknown id |
 | POST | `/api/inngest` | Inngest function discovery + execution (Dev Server) | — |
-
-The discovery/execution surface grows in Phase 3 with the graph-execution routes.
 
 ## Verified live
 
 ```
 GET /health                                HTTP 200  {"status":"ok"}
-workflow/ping event sent                   id 01M0M6XSZ1YV4XQA1E5HPJRSFY
-Dev Server: initializing fn engine-ping -> inngest/function.finished  (run completed)
-site renders: 1 React Flow container, decision node rendered,
-              header + YES/NO graph present (Playwright DOM check)
-next build week-7/BE-09/site               Compiled + TypeScript passed (exit 0)
+POST /runs (two-branch graph)              HTTP 202  { id, status: "queued", startNodeId }
+GET /runs/:id  -> done
+   path: ["start","gate","support"] · trace: [{ "Is this a support request?", YES }]
+   result: { endNodeId: "support", outcome: "Support queue" }   (real model: hy3-free)
+POST /runs (neutral prompt)                -> NO branch -> end "Phone"
+POST /runs (decision missing a NO edge)    -> failed  error "No NO edge from decision node d"
+POST /runs {"edges":[]}                    -> 400  "nodes array is required…"
+GET /runs/unknown                          -> 404  "Run not found"
+site (next start :3100) click Run          -> Done · Support queue, Execution order 1. … YES,
+                                             3 nodes highlighted, 0 console errors
+next build week-7/BE-09/site               exit 0 (Compiled + TypeScript)
 ```
 
-The two evidence captures — the Phase 1 health check and the Phase 2 interactive editor in use:
+Evidence captures across the phases:
 
 <div align="center" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
   <figure style="flex:1 1 46%; min-width:300px; margin:0;">
     <img src="data/evidence/site-phase1.png" alt="BE-09 site — Phase 1" width="100%"/>
     <figcaption style="text-align:center; font-size:12px; opacity:.8;">
-      Phase 1: header, stack badges, disabled Run button, and the two-branch
-      YES/NO graph on the React Flow canvas
+      Phase 1: header, stack badges, and the two-branch YES/NO canvas
     </figcaption>
   </figure>
   <figure style="flex:1 1 46%; min-width:300px; margin:0;">
     <img src="data/evidence/editor-phase2.png" alt="BE-09 editor — Phase 2" width="100%"/>
     <figcaption style="text-align:center; font-size:12px; opacity:.8;">
-      Phase 2: the interactive editor — node palette (top-left), an added
-      decision + outcome node, a freshly connected YES edge, and the edited
-      prompt persisted to localStorage
+      Phase 2: the interactive editor — node palette, an added decision + outcome,
+      a connected YES edge, edited prompt persisted
+    </figcaption>
+  </figure>
+  <figure style="flex:1 1 46%; min-width:300px; margin:0;">
+    <img src="data/evidence/run-phase3.png" alt="BE-09 run — Phase 3" width="100%"/>
+    <figcaption style="text-align:center; font-size:12px; opacity:.8;">
+      Phase 3: a completed run — Done · Support queue, the Execution order panel,
+      and the three visited nodes still highlighted
+    </figcaption>
+  </figure>
+  <figure style="flex:1 1 46%; min-width:300px; margin:0;">
+    <img src="data/evidence/inngest-dashboard.png" alt="Inngest dashboard" width="100%"/>
+    <figcaption style="text-align:center; font-size:12px; opacity:.8;">
+      Inngest Dev Server dashboard — the run-workflow function discovered and running
     </figcaption>
   </figure>
 </div>
@@ -155,7 +225,7 @@ The two evidence captures — the Phase 1 health check and the Phase 2 interacti
 | UI primitives | Shadcn-style: Tailwind v4, `cn` helper, `Button` / `Card` |
 | Workflow engine | Inngest SDK + local Dev Server (dashboard :8288) |
 | Web framework | Express (API + `serve` for `/api/inngest`) |
-| LLM | `openai` SDK + OpenCode Zen free tier (Phase 3) |
+| LLM | `openai` SDK + OpenCode Zen free tier (`hy3-free`, stub + kill-switch) |
 
 ## Project structure
 
@@ -165,41 +235,59 @@ week-7/BE-09/
 ├── task.md
 ├── .env.example            committed template; .env is git-ignored
 ├── src/                    the workflow engine (Express + Inngest)
-│   ├── config.ts           dotenv loader (explicit path) + port
-│   ├── server.ts           /health + /api/inngest (serve) + /api/inngest
-│   ├── functions.ts        Inngest client + engine-ping (Phase-3 executor lands here)
-│   └── test-ping.ts        Phase-1 checkpoint: sends workflow/ping
+│   ├── config.ts           dotenv loader (explicit path) + port + LLM config
+│   ├── server.ts           /health, POST /runs, GET /runs/:id, /api/inngest, CORS
+│   ├── functions.ts        Inngest client + engine-ping + run-workflow executor
+│   ├── store.ts            in-memory run store (status, path, trace, current node)
+│   ├── llm/
+│   │   ├── client.ts       OpenAI-compatible client + decide(prompt) -> YES/NO (Zen fetch-strip)
+│   │   └── prompt.ts       loads prompts/decision-v1.md
+│   └── test-ping.ts        phase-1 checkpoint: sends workflow/ping
+├── prompts/
+│   └── decision-v1.md      the versioned decision prompt
 ├── site/                   the Next.js frontend (React Flow editor)
 │   ├── tsconfig.json / next.config.ts / postcss.config.mjs / next-env.d.ts
 │   └── src/
-│       ├── app/            layout.tsx, page.tsx, globals.css (Tailwind + React Flow)
+│       ├── app/            layout.tsx, page.tsx, globals.css (Tailwind + React Flow + run highlight)
 │       ├── components/
 │       │   ├── flow/
-│       │   │   ├── FlowCanvas.tsx     controlled editor (add/connect/delete/persist)
+│       │   │   ├── FlowCanvas.tsx     controlled editor + Run + polling + traversal highlight
 │       │   │   ├── nodes.tsx          Start / AI-decision / Outcome (+ editable prompt)
 │       │   │   ├── edges.tsx          YES / NO / flow custom edge types
 │       │   │   └── types.ts           AppNode/AppEdge types, palette, branch mapping
 │       │   └── ui/                     button.tsx, card.tsx (shadcn-light)
-│       └── lib/utils.ts                cn() helper
-└── data/evidence/          site-phase1.png, editor-phase2.png
+│       └── lib/
+│           ├── api.ts                 backend client (startRun, fetchRun)
+│           └── utils.ts               cn() helper
+└── data/evidence/          site-phase1, editor-phase2, run-phase3, inngest-dashboard
 ```
 
 ## Conclusion
 
-Phase 1 proved the three moving parts of an AI workflow product talk to each
-other on this machine — the Next.js site renders the brief's own two-branch
-graph, and the Inngest Dev Server completes a real run over `/api/inngest`. Phase
-2 turns that static canvas into the actual thing a workflow operator uses: nodes
-come from a palette, connections are drawn handle-to-handle with the YES/NO
-branch baked into the edge (and stored as `data.branch` for the executor), prompts
-are edited in place, and the whole graph survives a reload in `localStorage`.
-The graph is no longer a data structure I type out — it is a shape the user builds.
+Phase 1 got the three moving parts of an AI workflow talking on one machine; Phase
+2 turned the canvas into an editor where the graph is a shape a person builds; Phase
+3 closed the loop the brief names as the whole point: **execute the workflow with
+Inngest and AI.** Clicking **Run workflow** ships the graph to `POST /runs`, an
+Inngest `run-workflow` function walks it — one `step.run` per decision node, the
+prompt answered with a single `YES`/`NO` by the LLM — and the editor polls the run
+back to show the traversal order and the ending outcome live. Every branch was proved
+with a real HTTP request (YES → Support, NO → Phone, a missing edge → failed, 400/404),
+and the AI turn ran on a real `hy3-free` call, not a stub.
 
-Two things carry forward into Phase 3. First, the graph is now a clean serializable
-contract — an array of `{kind, prompt}` nodes and `{source, target, branch}` edges —
-which is exactly the payload the Inngest executor will consume. Second, the
-Inngest v4 wiring settled in BE-06 (trigger in the options object, `express.json()`
-before the `serve` adapter, `INNGEST_DEV=1`) means Phase 3's executor is a matter
-of walking that graph with `step.run(...)` per node and following the LLM's `YES`
-or `NO` along `data.branch` — the loop is already warm.
+Three things about the work are worth writing down. First, the graph really is the
+contract: the same `{nodes, edges}` the editor draws is exactly the payload Inngest
+consumes, so what you see is literally what executes — no translation layer. Second,
+the executor is honest about uncertainty: if the model returns anything but a clean
+`YES`/`NO` it gets exactly one repair retry, then the run fails with a readable reason
+rather than guessing a branch, and a missing YES/NO edge fails the same way. Third, the
+free LLM tier is a moving floor — `deepseek-v4-flash-free` was "unavailable" this week,
+so I probed `/models` and moved the config to a working model, which is exactly why the
+model is a single env var behind `src/llm/client.ts` and why the README records the
+verification date.
+
+What Phase 4 should spend its time on follows naturally: the run state the editor
+already visualises (active node ring, visited fade, execution-order panel) is the raw
+material for the polish options — a persistent execution-log panel, save/load and
+JSON export, animated active edges, and retrying a failed node.
+
 

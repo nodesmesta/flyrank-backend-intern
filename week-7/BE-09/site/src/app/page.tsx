@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import FlowCanvas from "@/components/flow/FlowCanvas";
 
 export default function Home() {
@@ -21,9 +20,6 @@ export default function Home() {
           <span className="rounded-full bg-stone-100 px-2.5 py-1 text-xs text-stone-600">
             OpenCode Zen
           </span>
-          <Button disabled title="Wiring in Phase 3">
-            Run workflow
-          </Button>
         </div>
       </header>
 
