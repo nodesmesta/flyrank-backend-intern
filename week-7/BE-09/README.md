@@ -14,8 +14,8 @@ environment in which the flow editor (Phase 2) and the Inngest-executed AI graph
 |-------|------|--------|
 | 1 | Setup — app, React Flow, Inngest, OpenAI SDK, Shadcn, env, structure | ✅ done |
 | 2 | Foundations — visual flow editor, YES/NO edge types, editable prompts | ✅ done |
-| 3 | Build — every node → Inngest step, LLM returns YES/NO, dynamic traversal | ✅ **done (this commit)** |
-| 4 | Polish — ≥3 of: execution state, logs panel, save/load, export/import, styling, retries | ⏳ next |
+| 3 | Build — every node → Inngest step, LLM returns YES/NO, dynamic traversal | ✅ done |
+| 4 | Polish — ≥3 of: execution state, logs panel, save/load, export/import, styling, retries | ✅ **done (this commit)** |
 
 ## Summary
 
@@ -43,6 +43,9 @@ environment in which the flow editor (Phase 2) and the Inngest-executed AI graph
   `step.run` that asks the LLM for YES/NO and follows the matching edge — while
   the editor polls `GET /runs/:id` and shows the traversal order as it happens.
   The model answers are real (OpenCode Zen free tier, verified live).
+- **Polish (Phase 4)**: a persistent **execution log** panel (survives reload), named
+  **save / load** of workflows plus **JSON export / import**, **animated** edges
+  along the taken path, and a **Retry** button to re-run the last workflow.
 
 ## The executor (Phase 3)
 
@@ -109,6 +112,36 @@ drag the decision's YES handle onto an Outcome node → 4 edges (3 → 4)
 click a prompt, type, Enter  →  localStorage gains "Is this a billing issue?"
 reload ↓                        edited graph restored (6 nodes, 4 edges)
 console                         0 errors
+```
+
+## Polish (Phase 4)
+
+Five upgrades from the assignment's polish menu, each verified against the
+running site:
+
+- **Execution logs panel** — every finished run is appended to a persistent log
+  (`be9:runlog:v1`) in the bottom-left panel; expand a run to see its path and
+  the YES/NO trace. It survives reloads.
+- **Save / load workflows** — type a name and **Save**; **Load** it back from the
+  dropdown (localStorage slots, node positions preserved), **Del** to remove.
+- **JSON export / import** — **Export** downloads the graph as
+  `be9-workflow-<name>.json`; **Import** reads one back in (a graph round-trips).
+- **Animated active edges** — the edges actually traversed get React Flow's
+  animated dashdraw plus a thicker stroke and a soft glow, so the executed path
+  stays visible on the canvas.
+- **Retry** — re-runs the last submitted graph (handy after a `failed` run).
+
+Verified live (`next start`, Playwright drives the real UI):
+
+```
+click Run                                  -> Done · Support queue
+execution log                              -> 1 entry ("Support queue"); +1 after Retry
+reload                                     -> run log still present (persists)
+Save "demo-branch" then reload             -> slot listed in the Load dropdown
+Export                                     -> downloads be9-workflow-workflow.json
+Import a JSON graph                        -> 3 nodes, "Kickoff" label, toast "Imported"
+animated (taken) edges after a run         -> 2 edges
+console / page errors                      -> none
 ```
 
 ## Run it
@@ -215,6 +248,13 @@ Evidence captures across the phases:
       Inngest Dev Server dashboard — the run-workflow function discovered and running
     </figcaption>
   </figure>
+  <figure style="flex:1 1 46%; min-width:300px; margin:0;">
+    <img src="data/evidence/run-phase4.png" alt="BE-09 polish — Phase 4" width="100%"/>
+    <figcaption style="text-align:center; font-size:12px; opacity:.8;">
+      Phase 4: the persistent Execution log panel (bottom-left) and the Workflow
+      save/load + import/export toolbar (top-left), after a run
+    </figcaption>
+  </figure>
 </div>
 
 ## Tech stack
@@ -258,8 +298,9 @@ week-7/BE-09/
 │       │   └── ui/                     button.tsx, card.tsx (shadcn-light)
 │       └── lib/
 │           ├── api.ts                 backend client (startRun, fetchRun)
+│           ├── persistence.ts         run log + save/load slots + JSON export/import
 │           └── utils.ts               cn() helper
-└── data/evidence/          site-phase1, editor-phase2, run-phase3, inngest-dashboard
+└── data/evidence/          site-phase1, editor-phase2, run-phase3, run-phase4, inngest-dashboard
 ```
 
 ## Conclusion
@@ -285,9 +326,25 @@ so I probed `/models` and moved the config to a working model, which is exactly 
 model is a single env var behind `src/llm/client.ts` and why the README records the
 verification date.
 
-What Phase 4 should spend its time on follows naturally: the run state the editor
-already visualises (active node ring, visited fade, execution-order panel) is the raw
-material for the polish options — a persistent execution-log panel, save/load and
-JSON export, animated active edges, and retrying a failed node.
+Phase 4 turned that run state into the polish the brief asked for. The editor now
+keeps a **persistent execution log** of past runs (survives reload), lets a
+workflow be **saved / loaded** by name and **exported / imported** as JSON, draws
+the **executed path with animated edges**, and can **retry** a failed run. All of
+it verified against the running site with a real Playwright pass and zero console
+errors — and it surfaced one genuine bug worth admitting: because the run log and
+saved graph live in `localStorage`, loading them during the first render made the
+client disagree with the server-rendered HTML on a reload, which React (in a
+production build) rejects as a hydration mismatch. The fix — load anything that
+reads `localStorage` only after mount — is precisely the discipline this phase was
+for, and it is why the reload evidence above shows a clean console.
+
+The assignment now stands as a complete instrument. **Setup → editor → executor →
+polish**, each a built and verified layer: a React Flow canvas a person can draw,
+an Inngest `run-workflow` function that walks that graph with one `step.run` per
+decision node and follows the LLM's real `YES`/`NO`, and a set of operator
+conveniences around it. The whole thing is small by design — the graph is the
+contract, the model is one env var, and the free tier's rotation is handled by a
+probe-and-configure note rather than hidden magic — which is exactly what makes it
+a legible demonstration of the idea the brief opens with.
 
 

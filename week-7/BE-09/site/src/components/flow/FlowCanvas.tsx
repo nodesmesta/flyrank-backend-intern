@@ -17,6 +17,17 @@ import { DecisionNode, EndNode, StartNode } from "./nodes";
 import { FlowEdge, NoEdge, YesEdge } from "./edges";
 import { fetchRun, startRun, type Run } from "@/lib/api";
 import {
+  deleteWorkspace,
+  downloadGraph,
+  getRunLog,
+  listWorkspaces,
+  parseGraphFile,
+  pushRunLog,
+  saveWorkspace,
+  type RunLogEntry,
+  type Workspace,
+} from "@/lib/persistence";
+import {
   PALETTE,
   STORAGE_KEY,
   branchShape,
@@ -65,12 +76,31 @@ function loadState(): SavedGraph | null {
 }
 
 function Editor() {
-  const saved = useMemo(loadState, []);
-  const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>(saved?.nodes ?? defaultNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState<AppEdge>(saved?.edges ?? defaultEdges);
+  const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>(defaultNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<AppEdge>(defaultEdges);
   const [lastAction, setLastAction] = useState<string | null>(null);
   const [run, setRun] = useState<Run | null>(null);
   const [running, setRunning] = useState(false);
+  const [runLog, setRunLog] = useState<RunLogEntry[]>([]);
+  const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
+
+  // Everything below reads localStorage, which exists only on the client. Load
+  // it AFTER mount so the server-rendered first paint matches the client — a
+  // saved graph or run log must not cause a hydration mismatch on reload.
+  useEffect(() => {
+    const saved = loadState();
+    if (saved) {
+      setNodes(saved.nodes);
+      setEdges(saved.edges);
+    }
+    setRunLog(getRunLog());
+    setWorkspaces(listWorkspaces());
+  }, [setNodes, setEdges]);
+  const [saveName, setSaveName] = useState("");
+  const [loadName, setLoadName] = useState("");
+  const [expandedLogId, setExpandedLogId] = useState<string | null>(null);
+  const [logOpen, setLogOpen] = useState(true);
+  const lastGraphRef = useRef<{ nodes: Parameters<typeof startRun>[0]; edges: Parameters<typeof startRun>[1]; name?: string } | null>(null);
   const aliveRef = useRef(true);
   useEffect(() => {
     aliveRef.current = true;
@@ -79,9 +109,44 @@ function Editor() {
     };
   }, []);
 
-  // Send the current graph to the backend, then poll /runs/:id until the
-  // executor finishes, so the traversal (path + YES/NO trace) streams in.
-  const runNow = useCallback(async () => {
+  // Send the given graph to the backend, then poll /runs/:id until the executor
+  // finishes, so the traversal (path + YES/NO trace) streams in. On completion
+  // the outcome is appended to the persistent run log.
+  const execute = useCallback(
+    async (graph: { nodes: Parameters<typeof startRun>[0]; edges: Parameters<typeof startRun>[1] }) => {
+      lastGraphRef.current = graph;
+      setLastAction("Starting workflow run…");
+      setRunning(true);
+      try {
+        const started = await startRun(graph.nodes, graph.edges);
+        setRun(started);
+        for (let i = 0; i < 80; i++) {
+          await new Promise((r) => setTimeout(r, 900));
+          if (!aliveRef.current) return;
+          const next = await fetchRun(started.id);
+          setRun(next);
+          if (next.status === "done" || next.status === "failed") {
+            setRunning(false);
+            setRunLog(pushRunLog(next));
+            setLastAction(
+              next.status === "done"
+                ? `Done → ${next.result?.outcome ?? "finished"}`
+                : `Failed: ${next.error ?? "unknown error"}`,
+            );
+            return;
+          }
+        }
+        setRunning(false);
+        setLastAction("Timed out waiting for the run");
+      } catch (err) {
+        setRunning(false);
+        setLastAction(err instanceof Error ? err.message : "Could not start the run");
+      }
+    },
+    [],
+  );
+
+  const runNow = useCallback(() => {
     const graph = {
       nodes: nodes.map(({ id, type, data }) => ({ id, type, data })),
       edges: edges.map(({ id, source, target, sourceHandle, data }) => ({
@@ -92,33 +157,34 @@ function Editor() {
         data,
       })),
     };
-    setLastAction("Starting workflow run…");
-    setRunning(true);
-    try {
-      const started = await startRun(graph.nodes, graph.edges);
-      setRun(started);
-      for (let i = 0; i < 80; i++) {
-        await new Promise((r) => setTimeout(r, 900));
-        if (!aliveRef.current) return;
-        const next = await fetchRun(started.id);
-        setRun(next);
-        if (next.status === "done" || next.status === "failed") {
-          setRunning(false);
-          setLastAction(
-            next.status === "done"
-              ? `Done → ${next.result?.outcome ?? "finished"}`
-              : `Failed: ${next.error ?? "unknown error"}`,
-          );
-          return;
-        }
-      }
-      setRunning(false);
-      setLastAction("Timed out waiting for the run");
-    } catch (err) {
-      setRunning(false);
-      setLastAction(err instanceof Error ? err.message : "Could not start the run");
+    void execute(graph);
+  }, [nodes, edges, execute]);
+
+  const retryRun = useCallback(() => {
+    if (!lastGraphRef.current) return;
+    void execute(lastGraphRef.current);
+  }, [execute]);
+
+  // Edges actually traversed during the run — animate them (dashed flow) and
+  // thicken the active branch so the taken path is visible on the canvas.
+  const takenEdgeIds = useMemo(() => {
+    const p = run?.path ?? [];
+    const set = new Set<string>();
+    for (let i = 0; i + 1 < p.length; i++) {
+      const e = edges.find((ed) => ed.source === p[i] && ed.target === p[i + 1]);
+      if (e) set.add(e.id);
     }
-  }, [nodes, edges]);
+    return set;
+  }, [run, edges]);
+  const displayEdges = useMemo(
+    () =>
+      edges.map((e) =>
+        takenEdgeIds.has(e.id)
+          ? { ...e, animated: true, style: { ...e.style, strokeWidth: 5 } }
+          : e,
+      ),
+    [edges, takenEdgeIds],
+  );
 
   // Highlight the node currently being decided (blue ring) and already-visited
   // nodes (faded) during a run.
@@ -197,11 +263,89 @@ function Editor() {
     setLastAction("Reset to the default example");
   }, [setNodes, setEdges]);
 
+  // --- Save / Load / Export / Import ---
+  const nodeToSaved = (n: AppNode) => ({
+    id: n.id,
+    type: n.type,
+    position: n.position,
+    data: n.data as Record<string, unknown>,
+  });
+  const edgeToSaved = (e: AppEdge) => ({
+    id: e.id,
+    source: e.source,
+    target: e.target,
+    sourceHandle: e.sourceHandle ?? undefined,
+    data: e.data,
+  });
+  const savedToNodes = (ns: import("@/lib/persistence").SavedNode[]): AppNode[] =>
+    ns.map((n, i) => ({
+      id: n.id,
+      type: n.type as AppNode["type"],
+      position: n.position ?? { x: 80 + (i % 4) * 40, y: 30 + ((i / 4) | 0) * 90 },
+      data: n.data as AppNode["data"],
+    }));
+  const savedToEdges = (es: import("@/lib/persistence").SavedEdge[]): AppEdge[] =>
+    es.map((e) => {
+      const branch = (e.data?.branch ?? "next") as Branch;
+      const { edgeType } = branchShape(branch);
+      return {
+        id: e.id,
+        source: e.source,
+        target: e.target,
+        sourceHandle: e.sourceHandle ?? undefined,
+        type: edgeType,
+        data: { branch },
+        markerEnd: arrow(branch),
+      };
+    });
+
+  const saveGraph = () => {
+    const name = saveName.trim();
+    if (!name) {
+      setLastAction("Type a name, then Save");
+      return;
+    }
+    setWorkspaces(saveWorkspace(name, nodes.map(nodeToSaved), edges.map(edgeToSaved)));
+    setSaveName("");
+    setLastAction(`Saved "${name}"`);
+  };
+  const loadGraph = () => {
+    const ws = workspaces.find((w) => w.name === loadName);
+    if (!ws) {
+      setLastAction("Select a saved workflow to load");
+      return;
+    }
+    setNodes(savedToNodes(ws.nodes));
+    setEdges(savedToEdges(ws.edges));
+    setLastAction(`Loaded "${ws.name}"`);
+  };
+  const deleteGraph = () => {
+    if (!loadName) return;
+    setWorkspaces(deleteWorkspace(loadName));
+    setLoadName("");
+    setLastAction(`Deleted "${loadName}"`);
+  };
+  const exportGraph = () => {
+    downloadGraph(saveName.trim() || "workflow", nodes.map(nodeToSaved), edges.map(edgeToSaved));
+    setLastAction("Exported workflow as JSON");
+  };
+  const importFile = async (file: File | undefined) => {
+    if (!file) return;
+    try {
+      const g = await parseGraphFile(file);
+      setNodes(savedToNodes(g.nodes));
+      setEdges(savedToEdges(g.edges));
+      setLastAction(`Imported "${g.name ?? file.name}"`);
+    } catch (e) {
+      setLastAction(e instanceof Error ? e.message : "Import failed");
+    }
+  };
+
   return (
     <div className="h-full w-full">
       <ReactFlow<AppNode, AppEdge>
         nodes={displayNodes}
-        edges={edges}
+        edges={displayEdges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
@@ -230,12 +374,73 @@ function Editor() {
             <Button size="sm" variant="ghost" onClick={resetGraph}>
               Reset example
             </Button>
+            <div className="my-1 h-px bg-stone-200" />
+            <span className="px-1 text-[11px] font-medium uppercase tracking-wide text-stone-500">
+              Workflow
+            </span>
+            <div className="flex items-center gap-1.5">
+              <input
+                value={saveName}
+                onChange={(e) => setSaveName(e.target.value)}
+                placeholder="name"
+                className="w-24 rounded border border-stone-300 px-2 py-1 text-xs outline-none focus:border-stone-500"
+              />
+              <Button size="sm" variant="outline" onClick={saveGraph}>
+                Save
+              </Button>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <select
+                value={loadName}
+                onChange={(e) => setLoadName(e.target.value)}
+                className="w-24 rounded border border-stone-300 px-1 py-1 text-xs outline-none"
+              >
+                <option value="">Load…</option>
+                {workspaces.map((w) => (
+                  <option key={w.name} value={w.name}>
+                    {w.name}
+                  </option>
+                ))}
+              </select>
+              <Button size="sm" variant="outline" onClick={loadGraph} disabled={!loadName}>
+                Load
+              </Button>
+              <Button size="sm" variant="ghost" onClick={deleteGraph} disabled={!loadName}>
+                Del
+              </Button>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <label className="inline-flex cursor-pointer items-center rounded border border-stone-300 px-3 py-1 text-xs text-stone-900 hover:bg-stone-50">
+                Import
+                <input
+                  type="file"
+                  accept=".json,application/json"
+                  className="hidden"
+                  onChange={(e) => {
+                    void importFile(e.target.files?.[0]);
+                    e.target.value = "";
+                  }}
+                />
+              </label>
+              <Button size="sm" variant="outline" onClick={exportGraph}>
+                Export
+              </Button>
+            </div>
           </div>
         </Panel>
 
-        <Panel position="top-right">
+        <Panel position="top-right" className="flex flex-col items-end gap-2">
           <Button onClick={runNow} disabled={running} className="shadow-sm">
             {running ? "Running…" : "Run workflow"}
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={retryRun}
+            disabled={running || !lastGraphRef.current}
+            className="shadow-sm"
+          >
+            Retry last run
           </Button>
         </Panel>
 
@@ -274,6 +479,70 @@ function Editor() {
               )}
             </div>
           )}
+        </Panel>
+
+        <Panel position="bottom-left">
+          <div className="w-72 rounded-lg border border-stone-200 bg-white/95 shadow-sm backdrop-blur">
+            <button
+              type="button"
+              onClick={() => setLogOpen((o) => !o)}
+              className="flex w-full items-center justify-between px-3 py-2 text-xs font-semibold text-stone-600"
+            >
+              <span>Execution log ({runLog.length})</span>
+              <span>{logOpen ? "▾" : "▸"}</span>
+            </button>
+            {logOpen && (
+              <div className="max-h-56 overflow-auto border-t border-stone-100 px-2 py-1">
+                {runLog.length === 0 ? (
+                  <p className="px-1 py-2 text-xs text-stone-400">
+                    No runs yet — click Run workflow.
+                  </p>
+                ) : (
+                  runLog.map((entry) => (
+                    <div key={entry.id} className="border-b border-stone-100 py-1.5 last:border-0">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setExpandedLogId(expandedLogId === entry.id ? null : entry.id)
+                        }
+                        className="flex w-full items-center gap-2 text-left"
+                      >
+                        <span
+                          className={`h-2 w-2 shrink-0 rounded-full ${
+                            entry.status === "done"
+                              ? "bg-emerald-500"
+                              : entry.status === "failed"
+                                ? "bg-rose-500"
+                                : "bg-stone-400"
+                          }`}
+                        />
+                        <span className="flex-1 truncate text-xs text-stone-700">
+                          {entry.status === "done"
+                            ? entry.outcome ?? "done"
+                            : entry.status === "failed"
+                              ? entry.error
+                              : "running"}
+                        </span>
+                        <span className="shrink-0 text-[10px] text-stone-400">
+                          {new Date(entry.ts).toLocaleTimeString()}
+                        </span>
+                      </button>
+                      {expandedLogId === entry.id && (
+                        <div className="mt-1 space-y-0.5 pl-4 text-[11px] text-stone-500">
+                          <div>path: {entry.path.join(" → ")}</div>
+                          {entry.trace.map((t) => (
+                            <div key={t.nodeId}>
+                              {t.prompt} → <b>{t.answer}</b>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))
+                )}
+              </div>
+            )}
+          </div>
         </Panel>
       </ReactFlow>
 

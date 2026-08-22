@@ -29,3 +29,9 @@ body {
 .react-flow__node.rf-vis > * {
   opacity: 0.55;
 }
+
+/* Phase-4: the traversed edge gets a soft glow on top of React Flow's built-in
+   animated dashdraw (dashdraw comes from the @xyflow/style.css we import). */
+.react-flow__edge.animated path {
+  filter: drop-shadow(0 0 3px rgba(99, 102, 241, 0.6));
+}

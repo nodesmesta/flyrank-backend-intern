@@ -17,6 +17,7 @@ function BranchEdge({
   targetY,
   sourcePosition,
   targetPosition,
+  style,
   tone,
   label,
   labelBg,
@@ -32,7 +33,11 @@ function BranchEdge({
 
   return (
     <>
-      <BaseEdge id={id} path={path} style={{ stroke: tone, strokeWidth: 2 }} />
+      <BaseEdge
+        id={id}
+        path={path}
+        style={{ stroke: style?.stroke ?? tone, strokeWidth: style?.strokeWidth ?? 2 }}
+      />
       <EdgeLabelRenderer>
         <span
           className="nodrag nopan absolute pointer-events-none select-none rounded px-1.5 py-0.5 text-[11px] font-bold"
