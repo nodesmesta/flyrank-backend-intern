@@ -4,9 +4,10 @@ A **visual AI workflow** tool: every node in the canvas is a **YES/NO AI decisio
 (an LLM answers one question with only `YES` or `NO`), and the workflow is
 executed by **Inngest** while the flow is built and visualised in **React Flow**.
 
-This is Phase 1 (Setup) of a four-phase build — the scaffolding, wiring and
-environment in which the flow editor (Phase 2) and the Inngest-executed AI graph
-(Phase 3) will live.
+Built through the assignment's four phases — **Setup → Flow editor → Execution →
+Polish** — each a working, verified layer. Everything runs on your machine: a
+Next.js React Flow canvas, an Express + Inngest engine, and an OpenCode Zen
+free-tier model that actually answers each decision.
 
 ## Phase status
 
@@ -15,39 +16,84 @@ environment in which the flow editor (Phase 2) and the Inngest-executed AI graph
 | 1 | Setup — app, React Flow, Inngest, OpenAI SDK, Shadcn, env, structure | ✅ done |
 | 2 | Foundations — visual flow editor, YES/NO edge types, editable prompts | ✅ done |
 | 3 | Build — every node → Inngest step, LLM returns YES/NO, dynamic traversal | ✅ done |
-| 4 | Polish — ≥3 of: execution state, logs panel, save/load, export/import, styling, retries | ✅ **done (this commit)** |
+| 4 | Polish — ≥3 of: execution state, logs panel, save/load, export/import, styling, retries | ✅ done |
 
 ## Summary
 
-- **Two parts, one repo**: a Next.js site (`site/`) renders the React Flow canvas;
+- **Two parts, one repo**: a Next.js site (`site/`) renders the React Flow editor;
   an Express + Inngest server (`src/`) is the workflow engine and exposes
-  `/api/inngest` for the Dev Server to discover and run functions. Both share the
-  repo-root dependencies (single hoisted install — the monorepo convention).
-- **React Flow wired**: the canvas already renders a running two-branch graph —
-  `Request arrives → "Is this a support request?"` with a **YES** edge to
-  `Support queue` and a **NO** edge to `Sales queue`, the exact example shape the
-  assignment describes.
-- **Inngest alive**: the Dev Server discovers and runs an `engine-ping` function
-  (event `workflow/ping` → `pong from the AI workflow engine`), proving the
-  app ↔ Dev Server loop before any workflow logic exists.
-- **Shadcn (light)**: Tailwind v4 + the `cn` helper + `Button` / `Card` UI
-  primitives, so the UI is consistent without the full shadcn CLI.
-- **LLM provider configured**: `openai` SDK + OpenCode Zen free tier (the lane
-  already proven in this repo at week-6) — three env vars ready for Phase 3.
-- **Interactive editor (Phase 2)**: add nodes from a palette, drag between
-  handles to connect (a decision forks into YES / NO), click a prompt to edit it
-  inline, arrange nodes freely, and delete with Del — the whole graph is
-  persisted to `localStorage` and restored on reload.
-- **Executor (Phase 3)**: **Run workflow** sends the graph to `POST /runs`; an
-  Inngest `run-workflow` function walks it — every decision node is a
-  `step.run` that asks the LLM for YES/NO and follows the matching edge — while
-  the editor polls `GET /runs/:id` and shows the traversal order as it happens.
-  The model answers are real (OpenCode Zen free tier, verified live).
-- **Polish (Phase 4)**: a persistent **execution log** panel (survives reload), named
-  **save / load** of workflows plus **JSON export / import**, **animated** edges
-  along the taken path, and a **Retry** button to re-run the last workflow.
+  `/api/inngest` for the Dev Server. Both share the repo-root dependencies
+  (single hoisted install — the monorepo convention).
+- **Draw a graph** — add `Start` / `AI decision` / `Outcome` nodes, connect them
+  (a decision forks into **YES** / **NO**), and edit prompts inline. The graph is
+  persisted to `localStorage`.
+- **Run it** — **Run workflow** sends the graph to `POST /runs`; the Inngest
+  `run-workflow` function walks it, one `step.run` per decision node, answering
+  each prompt with a real model `YES`/`NO` and following the matching edge.
+- **Keep it** — a persistent execution log, named save/load, JSON export/import,
+  animated taken edges, and a Retry button.
+- Verified live end-to-end: the model answers are real (OpenCode Zen free tier,
+  `hy3-free`), not a stub.
 
-## The executor (Phase 3)
+## Phase 1 — Setup
+
+The scaffolding and wiring the later phases build on:
+
+- **Project structure** — `site/` (Next.js App Router frontend) + `src/`
+  (Express + Inngest backend) under `week-7/BE-09/`, sharing the root
+  `package.json`. Root scripts follow the monorepo `:be9` convention, and
+  `.env` / `.env.example` hold the config.
+- **React Flow wired** — the canvas already renders the assignment's own
+  two-branch example (`Request arrives → "Is this a support request?"` down a
+  **YES** edge to `Support queue` or a **NO** edge to `Sales queue`).
+- **Inngest alive** — the Dev Server discovers and runs an `engine-ping` function
+  (event `workflow/ping` → `pong from the AI workflow engine`), proving the app ↔
+  Dev Server loop before any workflow logic exists.
+- **Shadcn (light)** — Tailwind v4 + the `cn` helper + `Button` / `Card` UI
+  primitives, without the full shadcn CLI.
+- **LLM configured** — `openai` SDK + OpenCode Zen free tier (the lane already
+  proven in this repo at week-6) behind three env vars, ready for the executor.
+
+Phase 1 health-check proof (live):
+
+```
+GET /health                          HTTP 200  {"status":"ok"}
+workflow/ping event sent             -> Dev Server: engine-ping -> function.finished
+site renders                         -> 1 React Flow container, two-branch graph
+next build week-7/BE-09/site         exit 0
+```
+
+## Phase 2 — The flow editor
+
+The canvas is a working editor, not a static picture:
+
+- **Add nodes** from the panel — `Start`, `AI decision` (the YES/NO question),
+  and `Outcome`.
+- **Connect nodes** by dragging from a source dot to a target dot. A decision
+  node exposes **two** source handles (`YES` and `NO`), so the branch you draw is
+  encoded straight into the edge; the start node has one neutral output.
+- **YES / NO edge types** — three custom edge components (`yesedge` emerald,
+  `noedge` rose, `flowedge` stone) render the smooth-step path, an arrowhead and
+  a `YES` / `NO` badge, and each edge stores `data.branch` (`yes` / `no` /
+  `next`) — the exact field Phase 3's executor reads.
+- **Edit node prompts** inline — click any prompt or label, type, Enter commits
+  (Escape cancels). `updateNodeData` keeps the graph state controlled.
+- **Store graph state locally** — every edit writes `{nodes, edges}` to
+  `localStorage` (`be9:workflow:v1`); on load the editor restores what you
+  saved, or falls back to the two-branch example.
+
+Verified against the running dev server (Playwright drives the real UI):
+
+```
+initial graph                     4 nodes, 3 edges (YES + NO example)
+click "+ AI decision", "+ Outcome" → 6 nodes
+drag the decision's YES handle onto an Outcome node → 4 edges (3 → 4)
+click a prompt, type, Enter  →  localStorage gains "Is this a billing issue?"
+reload ↓                        edited graph restored (6 nodes, 4 edges)
+console                         0 errors
+```
+
+## Phase 3 — Execution (Inngest + AI)
 
 The editor's **Run workflow** button is wired end-to-end:
 
@@ -84,37 +130,7 @@ rotated again (`deepseek-v4-flash-free` → "Model is unavailable", so I probed
 `/models` and switched to **`hy3-free`**). The run above used a real `hy3-free`
 call that answered `YES`.
 
-## The flow editor (Phase 2)
-
-The canvas is now a working editor, not a static picture:
-
-- **Add nodes** from the panel — `Start`, `AI decision` (the YES/NO question),
-  and `Outcome`.
-- **Connect nodes** by dragging from a source dot to a target dot. A decision
-  node exposes **two** source handles (`YES` and `NO`), so the branch you draw is
-  encoded straight into the edge; the start node has one neutral output.
-- **YES / NO edge types** — three custom edge components (`yesedge` emerald,
-  `noedge` rose, `flowedge` stone) render the smooth-step path, an arrowhead and
-  a `YES` / `NO` badge, and each edge stores `data.branch` (`yes` / `no` /
-  `next`) — the exact field Phase 3's executor will read.
-- **Edit node prompts** inline — click any prompt or label, type, Enter commits
-  (Escape cancels). `updateNodeData` keeps the graph state controlled.
-- **Store graph state locally** — every edit writes `{nodes, edges}` to
-  `localStorage` (`be9:workflow:v1`); on load the editor restores what you
-  saved, or falls back to the two-branch example.
-
-Verified against the running dev server (Playwright drives the real UI):
-
-```
-initial graph                     4 nodes, 3 edges (YES + NO example)
-click "+ AI decision", "+ Outcome" → 6 nodes
-drag the decision's YES handle onto an Outcome node → 4 edges (3 → 4)
-click a prompt, type, Enter  →  localStorage gains "Is this a billing issue?"
-reload ↓                        edited graph restored (6 nodes, 4 edges)
-console                         0 errors
-```
-
-## Polish (Phase 4)
+## Phase 4 — Polish
 
 Five upgrades from the assignment's polish menu, each verified against the
 running site:
