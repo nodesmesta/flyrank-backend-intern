@@ -13,6 +13,21 @@ The pattern is the one behind every progress bar and every "we'll email you
 when it's ready" on the internet: **accept fast, work in the background,
 report status.**
 
+## Summary
+
+- A report service that never makes a client wait: `POST /reports` answers `202`
+  in ~1 ms and hands the ~8 s work to an **Inngest background job** — a
+  stand-in for a slow AI call or big export.
+- `GET /reports/:id` polls the job to its end (`pending` → `done` + result, or
+  `failed`) so the client sees progress instead of a timeout.
+- A cron function (`heartbeat`, every minute) logs the `pending` / `done` /
+  `failed` counts — work that starts from the clock, not a request.
+- Built on **Inngest**, the same job tool FlyRank runs in production, with a
+  local Dev Server and a dashboard that shows every run, step and retry.
+- Verified live: `202` in 1.3 ms; the poll flips `pending` → `done` in ~9 s;
+  topic `fail` runs 3 attempts then ends **Failed**; a missing topic is a `400`
+  that sends no event.
+
 ```
 client asks  -> POST /reports  -> 202 { id, status: "pending" }   (in ~1 ms)
 worker       -> make-report sleeps 8 s, then builds the result
@@ -154,3 +169,22 @@ week-7/BE-06/
 │   └── store.ts        in-memory report store (pending/done/failed)
 └── data/evidence/      dashboard screenshots
 ```
+
+## Conclusion
+
+This is the professional fix for the slow-handler problem the assignment opens
+with: the request that made a user wait, time out, retry, and run the work
+twice. Moving the slow operation into a background job turns that handshake
+into three clean steps — **accept fast, work in the background, report status**
+— and Inngest adds the durability pieces (retries, growing backoff, a live
+dashboard) that a hand-rolled worker would force me to rebuild.
+
+Two lessons carry forward. First, a wrong *input* is rejected at the door
+forever (`400`, no job is even created), while a wrong *moment* — a transient
+failure inside a job — is exactly what a retry is for; conflating them is how
+systems spend retries on requests that can never succeed. Second, cron is just
+five fields that say "when": `0 8 * * *` runs daily at 08:00 and `0 22 * * 0`
+runs every Sunday at 22:00. The status model (`pending` / `done` / `failed`)
+and the in-memory report map stay intentionally simple, keeping the focus on
+the background-job pattern rather than on persistence — which the assignment
+deliberately defers.
