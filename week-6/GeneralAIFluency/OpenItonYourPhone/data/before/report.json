@@ -1,0 +1,2169 @@
+{
+  "pages": {
+    "mobile /": {
+      "status": 200,
+      "loadMs": 1271,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1385,
+      "smallText": [
+        {
+          "tag": "P",
+          "cls": "highlights",
+          "text": "Global hackathon wins (2,300+ participan",
+          "fs": 13.6
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Personal Agent",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "stack",
+          "text": "TypeScript · Bright Data MCP",
+          "fs": 12.8
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Product Design",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "stack",
+          "text": "Design · Flow · Scoring",
+          "fs": 12.8
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Hackathons & Audits",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "stack",
+          "text": "Hackathon · Security Research",
+          "fs": 12.8
+        },
+        {
+          "tag": "FOOTER",
+          "cls": "",
+          "text": "HomeWorkAsset GuardContactMuhamad Jamalu",
+          "fs": 12.8
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "fs": 13.6
+        }
+      ],
+      "tapTargets": [
+        {
+          "tag": "A",
+          "cls": "brand",
+          "text": "Muhamad Jamaludin",
+          "w": 195,
+          "h": 30
+        },
+        {
+          "tag": "A",
+          "cls": "active",
+          "text": "Home",
+          "w": 67,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 63,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 108,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 80,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Signal Scout",
+          "w": 141,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 93,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Competitive Builds",
+          "w": 145,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 37,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 32,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 74,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 48,
+          "h": 22
+        }
+      ],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "logo.png",
+          "bytes": 26370,
+          "ms": 85
+        }
+      ]
+    },
+    "mobile /work": {
+      "status": 200,
+      "loadMs": 966,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1587,
+      "smallText": [
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Personal Agent · MVP",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Backend · Week 5",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Hackathons · Global",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Security Research",
+          "fs": 12
+        },
+        {
+          "tag": "FOOTER",
+          "cls": "",
+          "text": "HomeWorkAsset GuardContactMuhamad Jamalu",
+          "fs": 12.8
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "fs": 13.6
+        }
+      ],
+      "tapTargets": [
+        {
+          "tag": "A",
+          "cls": "brand",
+          "text": "Muhamad Jamaludin",
+          "w": 195,
+          "h": 30
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 67,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 63,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 108,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 80,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 37,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 32,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 74,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 48,
+          "h": 22
+        }
+      ],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 75
+        }
+      ]
+    },
+    "mobile /asset-guard": {
+      "status": 200,
+      "loadMs": 2184,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1656,
+      "smallText": [
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "Drag and drop an asset PDF — no lengthy ",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "The system reads, extracts, and runs the",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "A transparent 0–100 productivity score w",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "Specific improvement steps — the exact n",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "Continuous scraping, alerts on new oppor",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "Asset Guard is in design — tiers below a",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "1 asset",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Basic productivity score",
+          "fs": 13.6
+        },
+        {
+          "tag": "SPAN",
+          "cls": "btn",
+          "text": "Try Free",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Up to 10 assets",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Live monitoring",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Improvement steps",
+          "fs": 13.6
+        },
+        {
+          "tag": "SPAN",
+          "cls": "btn",
+          "text": "Start Growth",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Unlimited assets",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Custom integrations",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Dedicated support",
+          "fs": 13.6
+        },
+        {
+          "tag": "SPAN",
+          "cls": "btn",
+          "text": "Contact Us",
+          "fs": 13.6
+        },
+        {
+          "tag": "FOOTER",
+          "cls": "",
+          "text": "HomeWorkAsset GuardContactMuhamad Jamalu",
+          "fs": 12.8
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "fs": 13.6
+        }
+      ],
+      "tapTargets": [
+        {
+          "tag": "A",
+          "cls": "brand",
+          "text": "Muhamad Jamaludin",
+          "w": 195,
+          "h": 30
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 67,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 63,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 108,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 80,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 37,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 32,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 74,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 48,
+          "h": 22
+        }
+      ],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        },
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/hero.png",
+          "w": 1200,
+          "h": 655,
+          "cw": 308,
+          "ch": 168
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 81
+        },
+        {
+          "name": "hero.png",
+          "bytes": 1363378,
+          "ms": 1498
+        }
+      ]
+    },
+    "mobile /contact": {
+      "status": 200,
+      "loadMs": 900,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 651,
+      "smallText": [
+        {
+          "tag": "FOOTER",
+          "cls": "",
+          "text": "HomeWorkAsset GuardContactMuhamad Jamalu",
+          "fs": 12.8
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "fs": 13.6
+        }
+      ],
+      "tapTargets": [
+        {
+          "tag": "A",
+          "cls": "brand",
+          "text": "Muhamad Jamaludin",
+          "w": 195,
+          "h": 30
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 67,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 63,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 108,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 80,
+          "h": 40
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "btn",
+          "text": "Send message",
+          "w": 143,
+          "h": 41
+        },
+        {
+          "tag": "A",
+          "cls": "val",
+          "text": "linkedin.com/in/muhamad-jamalu",
+          "w": 276,
+          "h": 23
+        },
+        {
+          "tag": "A",
+          "cls": "val",
+          "text": "github.com/nodesmesta",
+          "w": 133,
+          "h": 23
+        },
+        {
+          "tag": "A",
+          "cls": "val",
+          "text": "Google Drive",
+          "w": 77,
+          "h": 23
+        },
+        {
+          "tag": "A",
+          "cls": "val",
+          "text": "calendly.com/muhamadjamaludin",
+          "w": 190,
+          "h": 23
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 37,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 32,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 74,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 48,
+          "h": 22
+        }
+      ],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 65
+        }
+      ]
+    },
+    "tablet /": {
+      "status": 200,
+      "loadMs": 912,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1385,
+      "smallText": [
+        {
+          "tag": "P",
+          "cls": "highlights",
+          "text": "Global hackathon wins (2,300+ participan",
+          "fs": 13.6
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Personal Agent",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "stack",
+          "text": "TypeScript · Bright Data MCP",
+          "fs": 12.8
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Product Design",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "stack",
+          "text": "Design · Flow · Scoring",
+          "fs": 12.8
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Hackathons & Audits",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "stack",
+          "text": "Hackathon · Security Research",
+          "fs": 12.8
+        },
+        {
+          "tag": "FOOTER",
+          "cls": "",
+          "text": "HomeWorkAsset GuardContactMuhamad Jamalu",
+          "fs": 12.8
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "fs": 13.6
+        }
+      ],
+      "tapTargets": [
+        {
+          "tag": "A",
+          "cls": "brand",
+          "text": "Muhamad Jamaludin",
+          "w": 195,
+          "h": 30
+        },
+        {
+          "tag": "A",
+          "cls": "active",
+          "text": "Home",
+          "w": 67,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 63,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 108,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 80,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Signal Scout",
+          "w": 141,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 93,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Competitive Builds",
+          "w": 145,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 37,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 32,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 74,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 48,
+          "h": 22
+        }
+      ],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 72
+        }
+      ]
+    },
+    "tablet /work": {
+      "status": 200,
+      "loadMs": 921,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1587,
+      "smallText": [
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Personal Agent · MVP",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Backend · Week 5",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Hackathons · Global",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Security Research",
+          "fs": 12
+        },
+        {
+          "tag": "FOOTER",
+          "cls": "",
+          "text": "HomeWorkAsset GuardContactMuhamad Jamalu",
+          "fs": 12.8
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "fs": 13.6
+        }
+      ],
+      "tapTargets": [
+        {
+          "tag": "A",
+          "cls": "brand",
+          "text": "Muhamad Jamaludin",
+          "w": 195,
+          "h": 30
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 67,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 63,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 108,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 80,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 37,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 32,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 74,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 48,
+          "h": 22
+        }
+      ],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 57
+        }
+      ]
+    },
+    "tablet /asset-guard": {
+      "status": 200,
+      "loadMs": 921,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1656,
+      "smallText": [
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "Drag and drop an asset PDF — no lengthy ",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "The system reads, extracts, and runs the",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "A transparent 0–100 productivity score w",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "Specific improvement steps — the exact n",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "Continuous scraping, alerts on new oppor",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "Asset Guard is in design — tiers below a",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "1 asset",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Basic productivity score",
+          "fs": 13.6
+        },
+        {
+          "tag": "SPAN",
+          "cls": "btn",
+          "text": "Try Free",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Up to 10 assets",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Live monitoring",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Improvement steps",
+          "fs": 13.6
+        },
+        {
+          "tag": "SPAN",
+          "cls": "btn",
+          "text": "Start Growth",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Unlimited assets",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Custom integrations",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Dedicated support",
+          "fs": 13.6
+        },
+        {
+          "tag": "SPAN",
+          "cls": "btn",
+          "text": "Contact Us",
+          "fs": 13.6
+        },
+        {
+          "tag": "FOOTER",
+          "cls": "",
+          "text": "HomeWorkAsset GuardContactMuhamad Jamalu",
+          "fs": 12.8
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "fs": 13.6
+        }
+      ],
+      "tapTargets": [
+        {
+          "tag": "A",
+          "cls": "brand",
+          "text": "Muhamad Jamaludin",
+          "w": 195,
+          "h": 30
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 67,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 63,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 108,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 80,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 37,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 32,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 74,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 48,
+          "h": 22
+        }
+      ],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        },
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/hero.png",
+          "w": 1200,
+          "h": 655,
+          "cw": 670,
+          "ch": 366
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 61
+        },
+        {
+          "name": "hero.png",
+          "bytes": 300,
+          "ms": 60
+        }
+      ]
+    },
+    "tablet /contact": {
+      "status": 200,
+      "loadMs": 865,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 651,
+      "smallText": [
+        {
+          "tag": "FOOTER",
+          "cls": "",
+          "text": "HomeWorkAsset GuardContactMuhamad Jamalu",
+          "fs": 12.8
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "fs": 13.6
+        }
+      ],
+      "tapTargets": [
+        {
+          "tag": "A",
+          "cls": "brand",
+          "text": "Muhamad Jamaludin",
+          "w": 195,
+          "h": 30
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 67,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 63,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 108,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 80,
+          "h": 40
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "btn",
+          "text": "Send message",
+          "w": 143,
+          "h": 41
+        },
+        {
+          "tag": "A",
+          "cls": "val",
+          "text": "linkedin.com/in/muhamad-jamalu",
+          "w": 276,
+          "h": 23
+        },
+        {
+          "tag": "A",
+          "cls": "val",
+          "text": "github.com/nodesmesta",
+          "w": 133,
+          "h": 23
+        },
+        {
+          "tag": "A",
+          "cls": "val",
+          "text": "Google Drive",
+          "w": 77,
+          "h": 23
+        },
+        {
+          "tag": "A",
+          "cls": "val",
+          "text": "calendly.com/muhamadjamaludin",
+          "w": 190,
+          "h": 23
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 37,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 32,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 74,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 48,
+          "h": 22
+        }
+      ],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 64
+        }
+      ]
+    },
+    "desktop /": {
+      "status": 200,
+      "loadMs": 955,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1385,
+      "smallText": [
+        {
+          "tag": "P",
+          "cls": "highlights",
+          "text": "Global hackathon wins (2,300+ participan",
+          "fs": 13.6
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Personal Agent",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "stack",
+          "text": "TypeScript · Bright Data MCP",
+          "fs": 12.8
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Product Design",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "stack",
+          "text": "Design · Flow · Scoring",
+          "fs": 12.8
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Hackathons & Audits",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "stack",
+          "text": "Hackathon · Security Research",
+          "fs": 12.8
+        },
+        {
+          "tag": "FOOTER",
+          "cls": "",
+          "text": "HomeWorkAsset GuardContactMuhamad Jamalu",
+          "fs": 12.8
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "fs": 13.6
+        }
+      ],
+      "tapTargets": [
+        {
+          "tag": "A",
+          "cls": "brand",
+          "text": "Muhamad Jamaludin",
+          "w": 195,
+          "h": 30
+        },
+        {
+          "tag": "A",
+          "cls": "active",
+          "text": "Home",
+          "w": 67,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 63,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 108,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 80,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Signal Scout",
+          "w": 141,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 93,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Competitive Builds",
+          "w": 145,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 37,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 32,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 74,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 48,
+          "h": 22
+        }
+      ],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 64
+        }
+      ]
+    },
+    "desktop /work": {
+      "status": 200,
+      "loadMs": 961,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1587,
+      "smallText": [
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Personal Agent · MVP",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Backend · Week 5",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Hackathons · Global",
+          "fs": 12
+        },
+        {
+          "tag": "SPAN",
+          "cls": "meta",
+          "text": "Security Research",
+          "fs": 12
+        },
+        {
+          "tag": "FOOTER",
+          "cls": "",
+          "text": "HomeWorkAsset GuardContactMuhamad Jamalu",
+          "fs": 12.8
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "fs": 13.6
+        }
+      ],
+      "tapTargets": [
+        {
+          "tag": "A",
+          "cls": "brand",
+          "text": "Muhamad Jamaludin",
+          "w": 195,
+          "h": 30
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 67,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 63,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 108,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 80,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 37,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 32,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 74,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 48,
+          "h": 22
+        }
+      ],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 64
+        }
+      ]
+    },
+    "desktop /asset-guard": {
+      "status": 200,
+      "loadMs": 924,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1656,
+      "smallText": [
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "Drag and drop an asset PDF — no lengthy ",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "The system reads, extracts, and runs the",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "A transparent 0–100 productivity score w",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "Specific improvement steps — the exact n",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "Continuous scraping, alerts on new oppor",
+          "fs": 13.12
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "text": "Asset Guard is in design — tiers below a",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "1 asset",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Basic productivity score",
+          "fs": 13.6
+        },
+        {
+          "tag": "SPAN",
+          "cls": "btn",
+          "text": "Try Free",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Up to 10 assets",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Live monitoring",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Improvement steps",
+          "fs": 13.6
+        },
+        {
+          "tag": "SPAN",
+          "cls": "btn",
+          "text": "Start Growth",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Unlimited assets",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Custom integrations",
+          "fs": 13.6
+        },
+        {
+          "tag": "LI",
+          "cls": "",
+          "text": "Dedicated support",
+          "fs": 13.6
+        },
+        {
+          "tag": "SPAN",
+          "cls": "btn",
+          "text": "Contact Us",
+          "fs": 13.6
+        },
+        {
+          "tag": "FOOTER",
+          "cls": "",
+          "text": "HomeWorkAsset GuardContactMuhamad Jamalu",
+          "fs": 12.8
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "fs": 13.6
+        }
+      ],
+      "tapTargets": [
+        {
+          "tag": "A",
+          "cls": "brand",
+          "text": "Muhamad Jamaludin",
+          "w": 195,
+          "h": 30
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 67,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 63,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 108,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 80,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 37,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 32,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 74,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 48,
+          "h": 22
+        }
+      ],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        },
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/hero.png",
+          "w": 1200,
+          "h": 655,
+          "cw": 883,
+          "ch": 482
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 58
+        },
+        {
+          "name": "hero.png",
+          "bytes": 300,
+          "ms": 79
+        }
+      ]
+    },
+    "desktop /contact": {
+      "status": 200,
+      "loadMs": 861,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 651,
+      "smallText": [
+        {
+          "tag": "FOOTER",
+          "cls": "",
+          "text": "HomeWorkAsset GuardContactMuhamad Jamalu",
+          "fs": 12.8
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "fs": 13.6
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "fs": 13.6
+        }
+      ],
+      "tapTargets": [
+        {
+          "tag": "A",
+          "cls": "brand",
+          "text": "Muhamad Jamaludin",
+          "w": 195,
+          "h": 30
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 67,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 63,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 108,
+          "h": 40
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 80,
+          "h": 40
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "btn",
+          "text": "Send message",
+          "w": 143,
+          "h": 41
+        },
+        {
+          "tag": "A",
+          "cls": "val",
+          "text": "linkedin.com/in/muhamad-jamalu",
+          "w": 276,
+          "h": 23
+        },
+        {
+          "tag": "A",
+          "cls": "val",
+          "text": "github.com/nodesmesta",
+          "w": 133,
+          "h": 23
+        },
+        {
+          "tag": "A",
+          "cls": "val",
+          "text": "Google Drive",
+          "w": 77,
+          "h": 23
+        },
+        {
+          "tag": "A",
+          "cls": "val",
+          "text": "calendly.com/muhamadjamaludin",
+          "w": 190,
+          "h": 23
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Home",
+          "w": 37,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Work",
+          "w": 32,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Asset Guard",
+          "w": 74,
+          "h": 22
+        },
+        {
+          "tag": "A",
+          "cls": "",
+          "text": "Contact",
+          "w": 48,
+          "h": 22
+        }
+      ],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 58
+        }
+      ]
+    }
+  },
+  "links": {},
+  "resources": {
+    "hero": "1363078",
+    "logo": "26070"
+  }
+}

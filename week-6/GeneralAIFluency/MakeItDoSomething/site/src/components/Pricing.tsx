@@ -9,7 +9,7 @@ export default function Pricing() {
   return (
     <section>
       <h2>Pricing</h2>
-      <p style={{ fontSize: '0.85rem', color: '#88889c', marginBottom: 16 }}>
+      <p style={{ fontSize: '0.875rem', color: '#5e5e74', marginBottom: 16 }}>
         Asset Guard is in design — tiers below are the planned model, not live billing.
       </p>
       <div className="pricing">

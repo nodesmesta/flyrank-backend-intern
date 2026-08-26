@@ -21,7 +21,7 @@ export default function AssetGuardPage() {
           Just numbers and next steps.
         </p>
         <Image
-          src="/img/hero.png"
+          src="/img/hero.webp"
           alt="Abstract data visualization in Asset Guard purple"
           width={1200}
           height={655}
