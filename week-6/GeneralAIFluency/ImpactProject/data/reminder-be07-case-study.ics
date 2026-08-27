@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Flyrank Intern//Impact Project//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:impactproject-nextcase-be07-20260903@muhamadjamaludin
+DTSTAMP:20260827T190000Z
+DTSTART;TZID=Asia/Jakarta:20260903T090000
+DTEND;TZID=Asia/Jakarta:20260903T093000
+SUMMARY:Add BE-07 case study to portfolio (/work)
+DESCRIPTION:Add the BE-07 case study (POST /enrich) to the portfolio work page.\nFollow how-to-add-next-case.md steps 4-6: add the case object to the cases array in WorkList.tsx, build and audit locally (tsc --noEmit + next build + multi-viewport audit), deploy to Vercel and verify the card on /work live.\nSource: github.com/nodesmesta/flyrank-backend-intern/tree/main/week-6/BE-07
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Reminder: add the BE-07 case study to /work (how-to-add-next-case.md steps 4-6)
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR
