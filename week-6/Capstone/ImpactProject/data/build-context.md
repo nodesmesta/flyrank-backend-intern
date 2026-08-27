@@ -77,8 +77,10 @@ Written in the member's own words, voice card applied, no generic filler.
 ## Repo Facts
 
 - Monorepo: github.com/nodesmesta/flyrank-backend-intern (branch `main`).
-- Task folders: `week-N/GeneralAIFluency/<Task>/` with `task.md`, `README.md`,
-  `data/` (evidence), and isolated site snapshots under the task folder.
+- Task folders: `week-N/GeneralAIFluency/<Task>/` (regular assignments) and
+  `week-N/Capstone/<Task>/` (capstone work) — each with `task.md`,
+  `README.md`, `data/` (evidence), and isolated site snapshots under the task
+  folder.
 - Identity: Muhamad Jamaludin — GitHub github.com/nodesmesta, LinkedIn
   linkedin.com/in/muhamad-jamaludin, Calendly calendly.com/muhamadjamaludin,
   tagline "Lets Build The Future".
