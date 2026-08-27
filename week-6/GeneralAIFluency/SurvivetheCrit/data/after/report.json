@@ -1,0 +1,582 @@
+{
+  "pages": {
+    "mobile /": {
+      "status": 200,
+      "loadMs": 439,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1265,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 15220,
+          "ms": 38
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 14388,
+          "ms": 41
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 14564,
+          "ms": 144
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 34460,
+          "ms": 76
+        },
+        {
+          "name": "logo.png",
+          "bytes": 26370,
+          "ms": 81
+        }
+      ]
+    },
+    "mobile /work": {
+      "status": 200,
+      "loadMs": 173,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1763,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 61
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 44
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 59
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 51
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 58
+        }
+      ]
+    },
+    "mobile /asset-guard": {
+      "status": 200,
+      "loadMs": 148,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1656,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        },
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/hero.webp",
+          "w": 0,
+          "h": 0,
+          "cw": 308,
+          "ch": 168
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 38
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 38
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 39
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 52
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 42
+        }
+      ]
+    },
+    "mobile /contact": {
+      "status": 200,
+      "loadMs": 152,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 651,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 35
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 55
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 70
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 56
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 52
+        }
+      ]
+    },
+    "tablet /": {
+      "status": 200,
+      "loadMs": 154,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1265,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 32
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 34
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 34
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 38
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 42
+        }
+      ]
+    },
+    "tablet /work": {
+      "status": 200,
+      "loadMs": 147,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1763,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 50
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 37
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 72
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 49
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 53
+        }
+      ]
+    },
+    "tablet /asset-guard": {
+      "status": 200,
+      "loadMs": 121,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1656,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        },
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/hero.webp",
+          "w": 1200,
+          "h": 655,
+          "cw": 670,
+          "ch": 366
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 38
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 39
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 40
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 47
+        },
+        {
+          "name": "hero.webp",
+          "bytes": 300,
+          "ms": 45
+        }
+      ]
+    },
+    "tablet /contact": {
+      "status": 200,
+      "loadMs": 404,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 651,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 40
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 40
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 39
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 40
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 49
+        }
+      ]
+    },
+    "desktop /": {
+      "status": 200,
+      "loadMs": 135,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1265,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 43
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 41
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 42
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 42
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 63
+        }
+      ]
+    },
+    "desktop /work": {
+      "status": 200,
+      "loadMs": 150,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1763,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 32
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 34
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 40
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 34
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 42
+        }
+      ]
+    },
+    "desktop /asset-guard": {
+      "status": 200,
+      "loadMs": 136,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1656,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        },
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/hero.webp",
+          "w": 1200,
+          "h": 655,
+          "cw": 883,
+          "ch": 482
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 65
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 66
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 66
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 52
+        },
+        {
+          "name": "hero.webp",
+          "bytes": 300,
+          "ms": 64
+        }
+      ]
+    },
+    "desktop /contact": {
+      "status": 200,
+      "loadMs": 150,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 651,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "https://muhamadjamaludin-portfolio.vercel.app/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 39
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 38
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 41
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 41
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 53
+        }
+      ]
+    }
+  },
+  "links": {},
+  "resources": {
+    "hero": "79144",
+    "logo": "26070"
+  }
+}

@@ -1,0 +1,597 @@
+{
+  "pages": {
+    "mobile /": {
+      "status": 200,
+      "loadMs": 209,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1265,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "http://localhost:3210/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 15220,
+          "ms": 26
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 14388,
+          "ms": 26
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 14564,
+          "ms": 37
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 34460,
+          "ms": 38
+        },
+        {
+          "name": "logo.png",
+          "bytes": 26370,
+          "ms": 38
+        }
+      ]
+    },
+    "mobile /work": {
+      "status": 200,
+      "loadMs": 85,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1763,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "http://localhost:3210/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 9
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 9
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 10
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 11
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 19
+        }
+      ]
+    },
+    "mobile /asset-guard": {
+      "status": 200,
+      "loadMs": 58,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1656,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "http://localhost:3210/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        },
+        {
+          "src": "http://localhost:3210/img/hero.webp",
+          "w": 1200,
+          "h": 655,
+          "cw": 308,
+          "ch": 168
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 6
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 7
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 12
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 12
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 19
+        },
+        {
+          "name": "hero.webp",
+          "bytes": 79444,
+          "ms": 7
+        }
+      ]
+    },
+    "mobile /contact": {
+      "status": 200,
+      "loadMs": 55,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 651,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "http://localhost:3210/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 4
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 14
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 14
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 14
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 15
+        }
+      ]
+    },
+    "tablet /": {
+      "status": 200,
+      "loadMs": 51,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1265,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "http://localhost:3210/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 7
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 12
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 15
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 15
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 18
+        }
+      ]
+    },
+    "tablet /work": {
+      "status": 200,
+      "loadMs": 53,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1763,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "http://localhost:3210/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 5
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 8
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 9
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 9
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 16
+        }
+      ]
+    },
+    "tablet /asset-guard": {
+      "status": 200,
+      "loadMs": 56,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1656,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "http://localhost:3210/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        },
+        {
+          "src": "http://localhost:3210/img/hero.webp",
+          "w": 1200,
+          "h": 655,
+          "cw": 670,
+          "ch": 366
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 9
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 13
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 13
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 13
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 16
+        },
+        {
+          "name": "hero.webp",
+          "bytes": 300,
+          "ms": 18
+        }
+      ]
+    },
+    "tablet /contact": {
+      "status": 200,
+      "loadMs": 56,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 651,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "http://localhost:3210/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 7
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 9
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 13
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 13
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 16
+        }
+      ]
+    },
+    "desktop /": {
+      "status": 200,
+      "loadMs": 54,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1265,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "http://localhost:3210/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 14
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 14
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 14
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 14
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 20
+        }
+      ]
+    },
+    "desktop /work": {
+      "status": 200,
+      "loadMs": 48,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1763,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "http://localhost:3210/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 11
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 13
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 13
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 13
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 18
+        }
+      ]
+    },
+    "desktop /asset-guard": {
+      "status": 200,
+      "loadMs": 51,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 1656,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "http://localhost:3210/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        },
+        {
+          "src": "http://localhost:3210/img/hero.webp",
+          "w": 1200,
+          "h": 655,
+          "cw": 883,
+          "ch": 482
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 5
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 7
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 15
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 16
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 12
+        },
+        {
+          "name": "hero.webp",
+          "bytes": 300,
+          "ms": 15
+        }
+      ]
+    },
+    "desktop /contact": {
+      "status": 200,
+      "loadMs": 55,
+      "overflowPx": 0,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "bodyTextLen": 651,
+      "smallText": [],
+      "tapTargets": [],
+      "imgs": [
+        {
+          "src": "http://localhost:3210/img/logo.png",
+          "w": 384,
+          "h": 384,
+          "cw": 30,
+          "ch": 30
+        }
+      ],
+      "imgResources": [
+        {
+          "name": "1bc7fc94203521e3-s.p.0gm5xa07u9y0b.woff2",
+          "bytes": 300,
+          "ms": 7
+        },
+        {
+          "name": "216579b50e548914-s.p.1ay1jy0-bfc4a.woff2",
+          "bytes": 300,
+          "ms": 8
+        },
+        {
+          "name": "3df2de83712245dd-s.p.0w014qgprzbql.woff2",
+          "bytes": 300,
+          "ms": 11
+        },
+        {
+          "name": "5cf8828ea9d4dda3-s.p.05uz1l1tir_-_.woff2",
+          "bytes": 300,
+          "ms": 11
+        },
+        {
+          "name": "logo.png",
+          "bytes": 300,
+          "ms": 14
+        }
+      ]
+    }
+  },
+  "links": {},
+  "resources": {
+    "hero": "79144",
+    "logo": "26070"
+  }
+}
