@@ -36,17 +36,18 @@ Flyrank-intern/
 │   ├── BE/
 │   └── GeneralAIFluency/
 │
-└── week-6/
-    ├── BE-07/
-    └── GeneralAIFluency/
-
+├── week-6/
+│   ├── BE-07/
+│   ├── GeneralAIFluency/
+│   └── Capstone/
+│
 └── week-7/
     ├── BE-06/
     ├── BE-08/
     └── BE-09/
 ```
 
-Each week folder contains the backend task(s) (`BE-xx`) and a `GeneralAIFluency/` folder with the AI fluency tasks for that period. Every task folder holds its own `README.md`, the task brief, and a `data/` folder with prompts, sources, and output artifacts. All dependencies and run scripts live in the root `package.json` (single hoisted install — run everything from the repository root).
+Each week folder contains the backend task(s) (`BE-xx`) and a `GeneralAIFluency/` folder with the AI fluency tasks for that period. Capstone-track work lives under a `Capstone/` folder inside the week (e.g. `week-6/Capstone/ImpactProject`). Every task folder holds its own `README.md`, the task brief, and a `data/` folder with prompts, sources, and output artifacts. All dependencies and run scripts live in the root `package.json` (single hoisted install — run everything from the repository root).
 
 ## Goals
 
